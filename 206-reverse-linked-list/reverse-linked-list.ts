@@ -12,15 +12,23 @@
 
 function reverseList(head: ListNode | null): ListNode | null {
 
-    let prev = null;
+    let prev = null
+
+    /*
+    singly linked list
+    prev
+    head
+    next
+    */
 
     while(head) {
-        let nextNode = head.next;
-        head.next = prev;
-        prev = head;
+        let nextNode = head.next; //saving next node
+        head.next = prev; //reversing
+        prev = head
         head = nextNode;
+        
     }
 
-    return prev;
+    return prev
 
 };
