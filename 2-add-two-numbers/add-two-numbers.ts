@@ -41,12 +41,12 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
             l2 = l2.next;
         }
 
-    }
-
-
         if (carry) {
             node.next = new ListNode(carry);
         }
+
+    }
+
 
     return head.next
     
