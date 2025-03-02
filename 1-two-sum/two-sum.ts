@@ -7,7 +7,7 @@ for (let i = 0; i < nums.length; i++) {
 }
 
 for (let i = 0; i < nums.length; i++) {
-    const numberNeeded = target - nums[i] //target minus current number
+    let numberNeeded = target - nums[i] //target minus current number
 
     if (numberToIndex[numberNeeded] != undefined && numberToIndex[numberNeeded] != i) {
         return [i, numberToIndex[numberNeeded]]
