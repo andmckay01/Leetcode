@@ -5,7 +5,7 @@ function twoSum(nums: number[], target: number): number[] {
     for(let i = 0; i < nums.length; i++) {
         let numberNeeded = target - nums[i];
 
-        if(numberToIndex[numberNeeded] !== undefined) {
+        if(numberToIndex[numberNeeded] != undefined) {
             return [i, numberToIndex[numberNeeded]]
         }
 
