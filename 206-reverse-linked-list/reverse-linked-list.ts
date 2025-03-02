@@ -12,7 +12,7 @@
 
 function reverseList(head: ListNode | null): ListNode | null {
 
-    let prev = null;
+    let prev = null
 
     while(head) {
         let nextNode = head.next;
@@ -21,6 +21,6 @@ function reverseList(head: ListNode | null): ListNode | null {
         head = nextNode;
     }
 
-    return prev
+    return prev //can I return head? does this make more sense?
 
 };
