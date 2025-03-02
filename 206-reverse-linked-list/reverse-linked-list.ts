@@ -21,6 +21,7 @@ function reverseList(head: ListNode | null): ListNode | null {
         head = nextNode;
     }
 
-    return prev //can I return head? does this make more sense?
+    return prev;
+
 
 };
