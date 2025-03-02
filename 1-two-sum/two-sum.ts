@@ -10,7 +10,7 @@ const numberToIndex = {}
 for(let i = 0; i < nums.length; i++) {
     const numberNeeded = target - nums[i]; //this is the number at that index
 
-    if (numberToIndex[numberNeeded] !== undefined) {
+    if (numberToIndex[numberNeeded] != undefined) {
             return [i, numberToIndex[numberNeeded]];
         }
 
