@@ -1,11 +1,18 @@
 function twoSum(nums: number[], target: number): number[] {
-    for(let i = 0; i < nums.length; i++) {
-        for(let j = i + 1; j < nums.length; j++) {
-            if(nums[i] + nums[j] === target) {
-                return [i, j]
-            }
-        }
+
+const numberToIndex = {}
+
+//add numbers and their indices to the dictionary
+for(let i = 0; i < nums.length; i++) {
+    numberToIndex[nums[i]] = i //adds number and its index to the dictionary
+}
+
+for(let i = 0; i < nums.length; i++) {
+    const numberNeeded = target - nums[i];
+
+    if (numberToIndex[numberNeeded] !== undefined && numberToIndex[numberNeeded] !== i) {
+
+        return [i, numberToIndex[numberNeeded]];
     }
-
-
+}
 };
