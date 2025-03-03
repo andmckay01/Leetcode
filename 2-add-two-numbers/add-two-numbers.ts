@@ -33,12 +33,15 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
         node.next = new ListNode(newValue);
         node = node.next
 
-        if (l1) {
-            l1 = l1.next;
+        // l1 ? l1 = l1.next : null
+        // l2 ? l2 = l2.next : null
+
+        if(l1) {
+            l1 = l1.next
         }
 
-        if (l2) {
-            l2 = l2.next;
+        if(l2) {
+            l2 = l2.next
         }
 
         if (carry) {
