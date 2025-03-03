@@ -11,46 +11,31 @@
  */
 
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
-
     let head = new ListNode(0);
     let node = head;
     let carry = 0;
 
-    while (l1 || l2 ) { //this allows us to traverse both
-
+    // Continue while we have digits in either list OR a carry value
+    while (l1 || l2 || carry > 0) {
+        // Get values (defaulting to 0 if node is null)
         let l1Value = l1 ? l1.val : 0;
         let l2Value = l2 ? l2.val : 0;
 
+        // Calculate sum including any existing carry
         let sum = l1Value + l2Value + carry;
-        carry = 0 //reset carry
-        let newValue = sum;
-
-        if (sum > 9) {
-            newValue = sum - 10;
-            carry = 1;
-        }
-
+        
+        // Calculate new digit and carry
+        let newValue = sum % 10;  // Get the ones digit
+        carry = Math.floor(sum / 10);  // Get the tens digit
+        
+        // Create the new node with the calculated value
         node.next = new ListNode(newValue);
-        node = node.next
+        node = node.next;
 
-        // l1 ? l1 = l1.next : null
-        // l2 ? l2 = l2.next : null
-
-        if(l1) {
-            l1 = l1.next
-        }
-
-        if(l2) {
-            l2 = l2.next
-        }
-
-        if (carry) {
-            node.next = new ListNode(carry);
-        }
-
+        // Move to next nodes in input lists if they exist
+        if (l1) l1 = l1.next;
+        if (l2) l2 = l2.next;
     }
 
-
-    return head.next
-    
-};
+    return head.next;
+}
