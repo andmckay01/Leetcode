@@ -12,7 +12,7 @@
 
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
 
-    let head = new ListNode(0) //no next node yet
+    let head = new ListNode(null) //no next node yet
     let node = head;
     let carry = 0
 
@@ -24,7 +24,7 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
 
         //calculate sum, carry, and add to current head
         let sum = l1Value + l2Value + carry;
-        carry = 0
+        carry = 0;
         let newValue = sum;
 
         if (sum > 9) {
