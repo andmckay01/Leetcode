@@ -12,7 +12,7 @@
 
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
 
-    let head = new ListNode(null) //no next node yet
+    let head = new ListNode(0) //no next node yet
     let node = head;
     let carry = 0
 
