@@ -10,7 +10,7 @@ function containsNearbyDuplicate(nums: number[], k: number): boolean {
 
     //finding 2 integers that are the same and sufficiently close (k)
     for(let i = 0; i < nums.length; i++) {
-        if (nums[i] in num_to_i) {
+        if (num_to_i.hasOwnProperty(nums[i])) {
             if (Math.abs(num_to_i[nums[i]] - i) <= k) {
                 return true
             }
