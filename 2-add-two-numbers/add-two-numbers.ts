@@ -12,42 +12,39 @@
 
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
 
-    let head = new ListNode(0) //no next node yet
-    let node = head;
-    let carry = 0
+    let head = new ListNode(0); // dummy head
+    let current = head; //current is currently at the head
+    let carry = 0 // define carry for later
 
-    while (l1 || l2 || carry > 0) {
+    // this ensures we will perform that add operation if any numbers needs adding
+    while(l1 || l2 || carry > 0) {
 
-        //initialize values
-        let l1Value = l1 ? l1.val : 0;
+        // we want 0 for these if they do not exist so we can add values that are different digits
+        let l1Value = l1 ? l1.val : 0; 
         let l2Value = l2 ? l2.val : 0;
 
-        //calculate sum, carry, and add to current head
-        let sum = l1Value + l2Value + carry;
-        carry = 0;
-        let newValue = sum;
+        let value = l1Value + l2Value + carry //carry starts at 0
+        carry = 0; //reset carry after we use it
 
-        if (sum > 9) {
-            newValue = sum % 10
-            carry = 1
+        //perform operations if sum > 9
+        if(value > 9) {
+            carry = 1; //we know the carry will only ever be 1
+            value = value % 10;
         }
 
-        //add new node
-        node.next = new ListNode(newValue);
-        node = node.next;
+        current.next = new ListNode(value); //this gives us [0, 7] on the first run
+        current = current.next //shift node
 
-        //move input list nodes to their next nodes
-        if (l1) {
+        //move our pointers
+        if(l1) {
             l1 = l1.next
         }
 
-        if (l2) {
+        if(l2) {
             l2 = l2.next
         }
-
     }
 
-    return head.next
-
+    return head.next //shifts our head from [0,7,0,8] to [7,0,8]
 
 };
