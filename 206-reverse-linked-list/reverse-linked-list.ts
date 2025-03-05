@@ -12,16 +12,16 @@
 
 function reverseList(head: ListNode | null): ListNode | null {
 
-    let prev = null
+    let prev = null;
 
     while(head) {
-        let nextNode = head.next;
-        head.next = prev;
-        prev = head;
-        head = nextNode;
+        let nextNode = head.next; //save next pointer we will move to
+        head.next = prev; //reverse pointer
+        prev = head; //prev for next iteration
+        head = nextNode; //increment head
     }
 
-    return prev;
+    return prev
 
 
 };
