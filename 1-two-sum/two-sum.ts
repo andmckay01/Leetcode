@@ -1,17 +1,19 @@
 function twoSum(nums: number[], target: number): number[] {
 
-    const numberToIndex = {}
+    //will store number and associated index
+    let numToIndex = new Map();
 
-    for(let i=0; i < nums.length; i++) {
+    for(let i=0; i<nums.length; i++) {
 
         let numberNeeded = target - nums[i];
 
-        if(numberToIndex[numberNeeded] != undefined) {
-            return [numberToIndex[numberNeeded], i]
+        if(numToIndex.has(numberNeeded)) {
+            return [numToIndex.get(numberNeeded), i]; //return indices 
         }
 
-        numberToIndex[nums[i]] = i;
-
+        numToIndex.set(nums[i], i);
     }
+
+    //assume each one has exactly one solution so we do not return 
 
 }
