@@ -8,7 +8,7 @@ function twoSum(nums: number[], target: number): number[] {
         let numberNeeded = target - nums[i];
 
         if(numToIndex.has(numberNeeded)) {
-            return [numToIndex.get(numberNeeded), i]; //return indices 
+            return [numToIndex.get(numberNeeded), i];
         }
 
         numToIndex.set(nums[i], i);
