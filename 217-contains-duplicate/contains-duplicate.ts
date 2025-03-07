@@ -1,10 +1,5 @@
 function containsDuplicate(nums: number[]): boolean {
 
-    // seen 
-    // add
-    // delete
-    // has
-
     let seen = new Set();
 
     for(let i=0; i<nums.length; i++) {
