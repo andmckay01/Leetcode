@@ -1,15 +1,12 @@
 function isAnagram(s: string, t: string): boolean {
 
     //an anagram is a word that is rearanged into another word
+    
     /*
     this solution is good with O(n) space complexity but not as good
     from with memory. We need a hash table (which we will learn later)
     */
-
-    //iterate through
-    //2 hash maps
-    //check that one length is the same as the other before iteration the 2nd
-
+    //SOLUTION 1, pretty good
     if(s.length != t.length) {
         return false
     }
