@@ -11,25 +11,37 @@ function isAnagram(s: string, t: string): boolean {
 
 
     //SOLUTION 1: pretty good
-    if(s.length != t.length) {
-        return false
+    // if(s.length != t.length) {
+    //     return false
+    // }
+
+    // let sMap = new Map();
+    // let tMap = new Map();
+
+    // for(let i=0; i<s.length; i++) {
+    //     //set chars and increment
+    //     sMap.set(s[i], (sMap.get(s[i]) || 0) + 1);
+    //     tMap.set(t[i], (tMap.get(t[i]) || 0) + 1);
+    // }
+
+    // for(const [key, value] of sMap.entries()) {
+    //     if(value != tMap.get(key)) {
+    //         return false;
+    //     }
+    // }
+
+    // return true
+
+    //FINAL SOLUTION:
+    if(s.length !== t.length) return false;
+
+    const array = new Array(26).fill(0);
+
+    for(let i = 0; i < s.length; i++) {
+        array[s.charCodeAt(i) - 97]++;
+        array[t.charCodeAt(i) - 97]--;
     }
 
-    let sMap = new Map();
-    let tMap = new Map();
-
-    for(let i=0; i<s.length; i++) {
-        //set chars and increment
-        sMap.set(s[i], (sMap.get(s[i]) || 0) + 1);
-        tMap.set(t[i], (tMap.get(t[i]) || 0) + 1);
-    }
-
-    for(const [key, value] of sMap.entries()) {
-        if(value != tMap.get(key)) {
-            return false;
-        }
-    }
-
-    return true
+    return array.every(freq => !freq);
 
 };
