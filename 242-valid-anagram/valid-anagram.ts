@@ -38,6 +38,6 @@ function isAnagram(s: string, t: string): boolean {
         array[t.charCodeAt(i) - 97]--;
     }
 
-    return array.every(freq => !freq);
+    return array.every(x => !x);
 
 };
