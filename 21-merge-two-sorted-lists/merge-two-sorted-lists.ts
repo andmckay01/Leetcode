@@ -26,17 +26,26 @@ function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode
         current = current.next //increment resulting list
     }
 
-    while(list1 || list2) {
-        if(list1) {
-            current.next = list1; //add to list
-            list1 = list1.next
-            current = current.next //increment resulting list
-        }
-        if(list2) {
-            current.next = list2; //add to list
-            list2 = list2.next
-            current = current.next //increment resulting list
-        }
+    //we can avoid the loop by undestanding that the above while loop will iterate through each list until
+    //there is only a single value in one of the lists left, therefore we do not need the while loop
+    // while(list1 || list2) {
+    //     if(list1) {
+    //         current.next = list1; //add to list
+    //         list1 = list1.next
+    //         current = current.next //increment resulting list
+    //     }
+    //     if(list2) {
+    //         current.next = list2; //add to list
+    //         list2 = list2.next
+    //         current = current.next //increment resulting list
+    //     }
+    // }
+
+    //therefore it looks liek this:
+    if(list1) {
+        current.next = list1
+    } else {
+        current.next = list2 //and there's no need to increment either
     }
 
     return dummy.next
