@@ -12,35 +12,37 @@
 
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
 
-    let head = new ListNode(0); //dummy head
-    let node = head; //we'll use this node to perform operations
-    let carry = 0;
+    let head = new ListNode(0); //we will return head.next
+    let current = head; //used for iterating
+    let carry = 0
 
     while(l1 || l2 || carry > 0) {
-        
-        //this will ensure we have 0s to add if the numbers are different lengths
+
+        //these give us zeros needed for adding different lengths
         let l1Value = l1 ? l1.val : 0;
         let l2Value = l2 ? l2.val : 0;
-        let newValue = l1Value + l2Value + carry; //carry comes from last time
-        carry = 0; //reset carry
+        let newValue = l1Value + l2Value + carry;
+        carry = 0 //reset carry once used
 
         if(newValue > 9) {
-            newValue = newValue % 10;
-            carry = 1; //add carry
+            carry = 1; //carry is always 1
+            newValue = newValue % 10; //reset new value because we carried some over
         }
 
-        node.next = new ListNode(newValue); //write new value, this will give us 0 -> num
-        node = node.next; //move node
+        //add value as a new ListNode, this should have a next pointer that is null
+        current.next = new ListNode(newValue); 
+        current = current.next; //shift list node
 
-        //increment the 2 numbers
-        if(l1) {
+        //shift l1 and l2 values
+        if (l1) {
             l1 = l1.next
         }
 
-        if(l2) {
+        if (l2) {
             l2 = l2.next
         }
     }
-    return head.next //dummy head is 0, head.next will be the start of our new list
 
+    return head.next //head is 0, head.next is our first digit
+    
 };
