@@ -1,17 +1,20 @@
 function containsDuplicate(nums: number[]): boolean {
 
-    let seen = new Set();
+    //map: has, set, get (which gets the value of the key
+    //set: has, add, no get
 
+    let numberSet = new Set();
     for(let i=0; i<nums.length; i++) {
 
-        if(seen.has(nums[i])) return true
+        if(numberSet.has(nums[i])) { //check set for that number
+            return true
+        }
 
-        seen.add(nums[i])
+        numberSet.add(nums[i]); //add to set if we haven't found a duplicate yet
+
     }
 
     return false
 
+    
 };
-
-//.includes is an O(n) operation. so if we call that inside a loop that requires O(n^2)
-//use a set instead which is an O(1) operation so we are O(n) worst case
