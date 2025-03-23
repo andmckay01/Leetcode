@@ -20,7 +20,6 @@ function topKFrequent(nums: number[], k: number): number[] {
 
     // loop through count and add them to the correct location in freq array [[]]
     for(const [num, frequency] of count) { //map is on object
-        console.log(num, frequency);
         freq[frequency].push(num);
     }
 
