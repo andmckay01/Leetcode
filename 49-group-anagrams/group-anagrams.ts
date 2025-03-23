@@ -26,10 +26,10 @@ function groupAnagrams(strs: string[]): string[][] {
     }
 
     //return an array of each value of groupings using the spread operator
-    // return [...groupings.values()];
+    return [...groupings.values()];
 
-    //or we could have:
-    return Array.from(groupings.values());
+    //or we could have but it si
+    // return Array.from(groupings.values());
 
 };
     
