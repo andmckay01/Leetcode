@@ -29,15 +29,16 @@ function isAnagram(s: string, t: string): boolean {
     // return true
 
     //FINAL SOLUTION: only works if all letters are lowercase so we can use the ASCII characters
-    if(s.length !== t.length) return false;
+    if(s.length !== t.length) return false
 
-    const array = new Array(26).fill(0);
+    let letters = new Array(26).fill(0); //new array with 26 values all filled with 0
 
-    for(let i = 0; i < s.length; i++) {
-        array[s.charCodeAt(i) - 97]++; //charCode for a is 97, b is 98, ...
-        array[t.charCodeAt(i) - 97]--;
+    //both are the same length so we can use either to drive the algorithm
+    for(let i=0; i<s.length; i++) {
+        letters[s.charCodeAt(i) - 97]++; //add one in this position if found in s
+        letters[t.charCodeAt(i) - 97]--; //remove if found in t
     }
 
-    return array.every(freq => !freq); //.every is an array method that tests if all elements pass a condition
+    return letters.every(freq => !freq); //every value should be falsy aka 0.
 
 };
