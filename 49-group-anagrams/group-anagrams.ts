@@ -25,9 +25,11 @@ function groupAnagrams(strs: string[]): string[][] {
 
     }
 
-    //once this is all done we want to return the values of the groupings
+    //return an array of each value of groupings using the spread operator
+    // return [...groupings.values()];
 
-    return [...groupings.values()];
+    //or we could have:
+    return Array.from(groupings.values());
 
 };
     
