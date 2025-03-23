@@ -11,32 +11,53 @@ function topKFrequent(nums: number[], k: number): number[] {
     Response is array of the values that occured the most
     */
 
-    let count = new Map(); //key is number, value is count
-    let freq = Array.from({length: nums.length + 1}, () => []) //key is count, value is array of numbers with that count
-    console.log(freq);
+//     let count = new Map(); //key is number, value is count
+//     let freq = Array.from({length: nums.length + 1}, () => []) //key is count, value is array of numbers with that count
+//     console.log(freq);
 
-    for(const n of nums) { // add numbers to count map
-        count.set(n, 1 + (count.get(n) || 0))
-    }
+//     for(const n of nums) { // add numbers to count map
+//         count.set(n, 1 + (count.get(n) || 0))
+//     }
 
-    console.log(count);
+//     console.log(count);
 
-    // loop through count and add them to the correct location in freq array [[]]
-    for(const [num, frequency] of count) { //map is on object
-        console.log(num, frequency);
-        freq[frequency].push(parseInt(num));
-    }
+//     // loop through count and add them to the correct location in freq array [[]]
+//     for(const [num, frequency] of count) { //map is on object
+//         console.log(num, frequency);
+//         freq[frequency].push(parseInt(num));
+//     }
 
-    console.log(freq);
+//     console.log(freq);
 
-    const res = []
-    //loop descending from our freq array and pull out the k elements into a res array
-    for(let i=freq.length - 1; i>0; i--) { //this is how to do a for loop in reverse
-        for(const n of freq[i])
-            res.push(n); //add number to response
-            if (res.length == k) {
-                return res
-            }
-    }
+//     const res = []
+//     //loop descending from our freq array and pull out the k elements into a res array
+//     for(let i=freq.length - 1; i>0; i--) { //this is how to do a for loop in reverse
+//         for(const n of freq[i])
+//             res.push(n); //add number to response
+//             if (res.length == k) {
+//                 return res
+//             }
+//     }
     
+// };
+
+    const count = {};
+    const freq = Array.from({ length: nums.length + 1 }, () => []);
+
+    for (const n of nums) {
+        count[n] = (count[n] || 0) + 1;
+    }
+    for (const n in count) {
+        freq[count[n]].push(parseInt(n));
+    }
+
+    const res = [];
+    for (let i = freq.length - 1; i > 0; i--) {
+        for (const n of freq[i]) {
+            res.push(n);
+            if (res.length === k) {
+                return res;
+            }
+        }
+    }
 };
