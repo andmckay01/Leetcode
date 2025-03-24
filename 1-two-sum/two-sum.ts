@@ -6,7 +6,7 @@ function twoSum(nums: number[], target: number): number[] {
         let numberNeeded = target - nums[i];
 
         if(hashmap.has(numberNeeded)) {
-            return [hashmap.get(numberNeeded), i]
+            return [i, hashmap.get(numberNeeded)]
         }
 
         hashmap.set(nums[i], i);
