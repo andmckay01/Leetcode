@@ -1,21 +1,24 @@
 function twoSum(nums: number[], target: number): number[] {
-    
-    const hashmap = new Map(); //has and set and get
 
-    //loops through all the numbers
+    let hashmap = new Map(); //number as key and index of number as value
+
     for(let i=0; i<nums.length; i++) {
+        let numberNeeded = target - nums[i];
+        console.log('number needed: ', numberNeeded);
 
-        let numberNeeded = target - nums[i]; //target - value = numberNeeded
+        console.log('hashmap has number needed: ', hashmap.has(numberNeeded))
 
-        //this needs to be before the setting otherwise you may use the existing index twice
+        console.log('hashmap get: ', hashmap.get(numberNeeded))
+
         if(hashmap.has(numberNeeded)) {
-            return [i, hashmap.get(numberNeeded)] //return the current index and the index of number needed
+            return [hashmap.get(numberNeeded), i]
         }
 
-        hashmap.set(nums[i], i); //adds value and the index of that value to our hashmap
-
-        // O(1) constant time since we only have to loop through each value once, worst case
+        hashmap.set(nums[i], i);
 
     }
+
+    //no return needed here because problem has exactly one solution
+
     
 };
