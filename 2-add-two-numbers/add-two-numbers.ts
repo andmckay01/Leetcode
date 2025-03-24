@@ -12,37 +12,38 @@
 
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
 
-    let head = new ListNode(0); //we will return head.next
-    let current = head; //used for iterating
-    let carry = 0
+    //use the dummy head pattern so that we don't lose our spot
+    let dummyHead = new ListNode(0);
+    let node = dummyHead;
+    let carry = 0;
 
     while(l1 || l2 || carry > 0) {
 
-        //these give us zeros needed for adding different lengths
+        //need these so that we have zeros if they do not exist
         let l1Value = l1 ? l1.val : 0;
         let l2Value = l2 ? l2.val : 0;
+
         let newValue = l1Value + l2Value + carry;
-        carry = 0 //reset carry once used
+        carry = 0; //reset carry
 
         if(newValue > 9) {
-            carry = 1; //carry is always 1
-            newValue = newValue % 10; //reset new value because we carried some over
+            carry = 1;
+            newValue = newValue % 10; //will remove 10 from newValue
         }
 
-        //add value as a new ListNode, this should have a next pointer that is null
-        current.next = new ListNode(newValue); 
-        current = current.next; //shift list node
+        node.next = new ListNode(newValue); //add next node with newValue
+        node = node.next //move head
 
-        //shift l1 and l2 values
-        if (l1) {
+        if(l1) {
             l1 = l1.next
         }
 
-        if (l2) {
+        if(l2) {
             l2 = l2.next
         }
+
     }
 
-    return head.next //head is 0, head.next is our first digit
+    return dummyHead.next; //dummyHead is 0, next is the start of our list
     
 };
