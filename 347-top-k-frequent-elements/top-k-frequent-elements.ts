@@ -1,57 +1,26 @@
 function topKFrequent(nums: number[], k: number): number[] {
-    /*
-    O(n) space and time complexity
-    1. Add hashmap (this will be used to count)
-    2. Create an array with the length of values of the input array
-       The index will be the freq and the values will be a list of values [1,2]
-    3. Loop through the input nums and add to count
-    4. Loop through count and add to our array
+    let count = new Map(); //count is a simple count. Each element and each associated count
+    let freq = Array.from({length: nums.length + 1}, () => []); //array with an array as the value
 
-    4. Create res and build that as we iterate through the array of length descending order
-    Response is array of the values that occured the most
-    */
-
-    let count = new Map(); //key is number, value is count
-    let freq = Array.from({length: nums.length + 1}, () => []) //key is count, value is array of numbers with that count
-
-    for(const n of nums) { // add numbers to count map
+    //first we add our counts to the count map
+    for(const n of nums) {
         count.set(n, 1 + (count.get(n) || 0))
     }
 
-    // loop through count and add them to the correct location in freq array [[]]
-    for(const [num, frequency] of count) { //map is on object
-        freq[frequency].push(num);
+    //loop through the map and add things to our freq array
+    for(const [num, frequency] of count) {
+        freq[frequency].push(num); //why not [num]?
     }
 
-    const res = []
-    //loop descending from our freq array and pull out the k elements into a res array
-    for(let i=freq.length - 1; i>0; i--) { //this is how to do a for loop in reverse
-        for(const n of freq[i])
-            res.push(n); //add number to response
-            if (res.length == k) {
+    let res = [];
+    for(let i=freq.length-1; i>0; i--) {
+        for(const n of freq[i]) {
+            res.push(n);
+            if(res.length == k) {
                 return res
             }
+        }
     }
-    
+
+    //no return here because problem will have exactly one value
 };
-
-//     const count = {};
-//     const freq = Array.from({ length: nums.length + 1 }, () => []);
-
-//     for (const n of nums) {
-//         count[n] = (count[n] || 0) + 1;
-//     }
-//     for (const n in count) {
-//         freq[count[n]].push(parseInt(n));
-//     }
-
-//     const res = [];
-//     for (let i = freq.length - 1; i > 0; i--) {
-//         for (const n of freq[i]) {
-//             res.push(n);
-//             if (res.length === k) {
-//                 return res;
-//             }
-//         }
-//     }
-// };
