@@ -16,7 +16,7 @@ function groupAnagrams(strs: string[]): string[][] {
         let word = strs[i];
 
         for(let c=0; c<word.length; c++) {
-            let index = word.charCodeAt(c) - "a".charCodeAt(0); //gives us the index number
+            let index = word[c].charCodeAt(0) - "a".charCodeAt(0); //gives us the index number
             letterArray[index] = letterArray[index] += 1; //add 1 to the value at that index
         }
 
@@ -28,6 +28,5 @@ function groupAnagrams(strs: string[]): string[][] {
     }
 
     return [...group.values()]
-
     
 };
