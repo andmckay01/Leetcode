@@ -17,11 +17,11 @@ function topKFrequent(nums: number[], k: number): number[] {
     for(let i=freq.length-1; i>0; i--) {
         for(const n of freq[i]) {
             res.push(n);
-            if(res.length == k) {
+            if(res.length >= k) {
                 return res
             }
         }
     }
-    return res
+    // return res
 
 };
