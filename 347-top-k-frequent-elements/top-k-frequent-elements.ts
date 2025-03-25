@@ -1,4 +1,5 @@
 function topKFrequent(nums: number[], k: number): number[] {
+
     let count = new Map(); //count is a simple count. Each element and each associated count
     let freq = Array.from({length: nums.length + 1}, () => []); //array with an array as the value
 
@@ -21,6 +22,6 @@ function topKFrequent(nums: number[], k: number): number[] {
             }
         }
     }
+    return res
 
-    //no return here because problem will have exactly one value
 };
