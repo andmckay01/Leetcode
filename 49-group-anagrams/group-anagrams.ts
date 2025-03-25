@@ -16,7 +16,6 @@ function groupAnagrams(strs: string[]): string[][] {
         let word = strs[i];
 
         for(let c=0; c<word.length; c++) {
-            console.log(word.charCodeAt(c))
             let index = word.charCodeAt(c) - "a".charCodeAt(0); //gives us the index number
             letterArray[index] = letterArray[index] += 1; //add 1 to the value at that index
         }
@@ -26,20 +25,7 @@ function groupAnagrams(strs: string[]): string[][] {
 
         group.set(letters, group.has(letters) ? [...group.get(letters), word] : [word]);
 
-        // //we can simplify this
-        // if(group.has(letters)) {
-        //     group.set(letters, group.get(letters) + 1)
-        // } else { //else we add a new one
-        //     group.set(letters, 1)
-        // }
-
-        //we need to use proper notation to have a map with {key1: [], key2: []}
-        //then we need to iterate through these on the return
-
     }
-
-
-
 
     return [...group.values()]
 
