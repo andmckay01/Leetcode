@@ -1,47 +1,47 @@
 function groupAnagrams(strs: string[]): string[][] {
 
-    //accessing a value of an index in an array is constant time
+    /*
+    what we need:
+    1. way to determine anagrams -> array with 26 elements each representing a character (strs[i] consists of lowercase English letters.)
+    2. Array of arrays where we store the values in each particular section as we move through it
+      a) key is the ordered letterset
 
-    let groupings = new Map(); //can be empty
 
-    for(let s=0; s<strs.length; s++) { //loop through every string strs[s]
+    */
 
-        let group = new Array(26).fill(0); //array with 26 zeros
+    let group = new Map(); //set, get, has
 
-        for(let c=0; c<strs[s].length; c++) { //loop through every character c
-            group[strs[s].charCodeAt(c) - "a".charCodeAt(0)]++ //"a" is 97
+    for (let i=0; i<strs.length; i++) {
+        let letterArray = new Array(26).fill(0);
+        let word = strs[i];
+
+        for(let c=0; c<word.length; c++) {
+            console.log(word.charCodeAt(c))
+            let index = word.charCodeAt(c) - "a".charCodeAt(0); //gives us the index number
+            letterArray[index] = letterArray[index] += 1; //add 1 to the value at that index
         }
 
-        //convert to string array (see below for why)
-        const key = group.toString();
+        //once done we have an array 
+        let letters = letterArray.toString()
 
-        //create the key value if it does not exist
-        if(!groupings.has(key)) {
-            groupings.set(key, []) //key with value of empty array 
-        }
+        group.set(letters, group.has(letters) ? [...group.get(letters), word] : [word]);
 
-        //add to that key. Get is a map method and push is an array method
-        groupings.get(key).push(strs[s])
+        // //we can simplify this
+        // if(group.has(letters)) {
+        //     group.set(letters, group.get(letters) + 1)
+        // } else { //else we add a new one
+        //     group.set(letters, 1)
+        // }
+
+        //we need to use proper notation to have a map with {key1: [], key2: []}
+        //then we need to iterate through these on the return
 
     }
 
-    //return an array of each value of groupings using the spread operator
-    return [...groupings.values()];
 
-    //or we could have this below but it is less efficient
-    // return Array.from(groupings.values());
 
+
+    return [...group.values()]
+
+    
 };
-    
-/*
-cannot do the following
-array1 = [1,2,3]
-array2 = array1
-array3 = [1,2,3]
-array2 == array3 //false because these are different arrays in memory
-array1 == array2 //true because therse are the same arrays in memory
-instead, we need to convert these arrays to strings
-
-*/
-
-    
