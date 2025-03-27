@@ -1,5 +1,20 @@
 function isAnagram(s: string, t: string): boolean {
 
+    if(s.length !== t.length) return false
+
+    let characterArray = new Array(26).fill(0); //array with all zeros
+
+    for(let i=0; i<s.length; i++) {
+        //add character at position for s, remove for t
+        characterArray[s.charCodeAt(i) - 97]++;
+        characterArray[t.charCodeAt(i) - 97]--;
+
+    }
+
+    return characterArray.every(freq => !freq);
+    
+};
+
     //an anagram is a word that is rearanged into another word
 
     /*
@@ -27,18 +42,3 @@ function isAnagram(s: string, t: string): boolean {
     // }
 
     // return true
-
-    //FINAL SOLUTION: only works if all letters are lowercase so we can use the ASCII characters
-    if(s.length !== t.length) return false
-
-    let letters = new Array(26).fill(0); //new array with 26 values all filled with 0
-
-    //both are the same length so we can use either to drive the algorithm
-    for(let i=0; i<s.length; i++) {
-        letters[s.charCodeAt(i) - 97]++; //add one in this position if found in s
-        letters[t.charCodeAt(i) - 97]--; //remove if found in t
-    }
-
-    return letters.every(freq => !freq); //every value should be falsy aka 0.
-
-};
