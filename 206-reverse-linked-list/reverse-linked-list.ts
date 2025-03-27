@@ -12,15 +12,15 @@
 
 function reverseList(head: ListNode | null): ListNode | null {
 
-    let prev = null; //initialize previous
-
+    let prev = null;
+    
     while(head) {
-        let nextNode = head.next; //save next pointer
-        head.next = prev; //reverse pointer
-        prev = head; //shift prev to head
-        head = nextNode; //shift head to nextNode
+        let nextNode = head.next; //save nextNode
+        head.next = prev; //reverse
+        prev = head;
+        head = nextNode;
     }
 
-    return prev; //when everything is done, return prev which will be the final head that we shifted
+    return prev;
     
 };
