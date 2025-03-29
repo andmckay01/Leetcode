@@ -9,7 +9,7 @@ function isValid(s: string): boolean {
 
     //use of for things that are not inherently iterable
     for(let c of s) { //closeToOpen(c) is checking that something is a closing
-        if(stack && closeToOpen[c]) {
+        if(closeToOpen[c]) {
             if(stack[stack.length-1] == closeToOpen[c]) {
                 stack.pop();
             } else {
