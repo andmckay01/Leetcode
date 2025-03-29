@@ -22,7 +22,7 @@ function isValid(s: string): boolean {
         }
     }
 
-    if (stack.length === 0) {
+    if (stack.length === 0) { //stack is empty
         return true;
     } else {
         return false
