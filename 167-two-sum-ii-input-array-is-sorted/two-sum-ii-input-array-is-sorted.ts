@@ -8,11 +8,6 @@ function twoSum(numbers: number[], target: number): number[] {
     while(l < r) {
         let sum = numbers[l] + numbers[r];
 
-        console.log('l: ', l);
-        console.log('r: ', r);
-
-        console.log(sum);
-
         if(sum == target) {
             return [l+1, r+1];
         }
