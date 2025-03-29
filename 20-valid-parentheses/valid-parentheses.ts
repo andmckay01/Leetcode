@@ -9,9 +9,7 @@ function isValid(s: string): boolean {
 
     //use of for things that are not inherently iterable
     for(let c of s) { //closeToOpen(c) is checking that something is a closing
-        console.log(c);
         if(stack && closeToOpen[c]) {
-            console.log(stack[stack.length-1])
             if(stack[stack.length-1] == closeToOpen[c]) {
                 stack.pop();
             } else {
@@ -22,8 +20,8 @@ function isValid(s: string): boolean {
         }
     }
 
-    if(stack.length == 0) return true
+    if(stack.length == 0) {
+        return true
+    } else return false
 
-    return false
-    
 };
