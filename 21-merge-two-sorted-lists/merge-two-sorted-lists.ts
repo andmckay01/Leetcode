@@ -36,8 +36,6 @@ function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode
             list2 = list2.next; //increment list1
         }
 
-        console.log(node);
-
         //increment current node
         node = node.next;
     }
