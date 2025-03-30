@@ -12,27 +12,43 @@
 
 function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
 
-    let dummy = new ListNode(0);
-    let current = dummy;
+    /*
+    already sorted
+    loop through one of them
+    check the current value against the other list's node, whichever one is less, add it
+    at the very end there will be one final node we'll just need to add
+        we could simplify code and simply write in that if null default to other
+    */
 
-    while(list1 && list2) { //while both
-        if(list1.val < list2.val) {
-            current.next = list1; //add to list
-            list1 = list1.next; //increment
+    let newList = new ListNode(null); //initialize at null
+    let node = newList;
+
+    while(list1 && list2) {
+        let list1Value = list1 ? list1.val : null;
+        let list2Value = list2 ? list2.val : null;
+
+        if(list1Value < list2Value) {
+            // newList.next = new ListNode(list1.val) //not sure this verbosity is needed
+            node.next = list1 //add new
+            list1 = list1.next; //increment list1
         } else {
-            current.next = list2; //add to list
-            list2 = list2.next; //increment
+            node.next = list2 //add new
+            list2 = list2.next; //increment list1
         }
-        current = current.next //increment resulting list
+
+        console.log(node);
+
+        //increment current node
+        node = node.next;
     }
 
-    //therefore it looks liek this:
+    //at the very end we add the final value for whichever is not null
     if(list1) {
-        current.next = list1
+        node.next = list1
     } else {
-        current.next = list2 //and there's no need to increment either
+        node.next = list2
     }
 
-    return dummy.next
+    return newList.next; //this starts at null but we want to start at the first value
     
 };
