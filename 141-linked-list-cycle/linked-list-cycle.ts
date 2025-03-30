@@ -1,0 +1,40 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+ /*
+ what is a cycle? -> a node where pointers eventually follow itself, use O(1) constant memory.
+
+ output true if if there is a cycle and false if not
+
+ use a hashmap, look if the current head.next = a node we already saw
+ O(n) time complexity, O(n) space complexity
+
+ */
+
+function hasCycle(head: ListNode | null): boolean {
+
+    let hashmap = new Map();
+
+    while(head) {
+        //cycle found if next node is a previously seen node
+        if(hashmap.has(head.next)) return true
+
+        //set the current head in our hashmap as we iterate
+        hashmap.set(head, 0);
+
+        //increment head for next iteration
+        head = head.next 
+    }
+
+    return false
+    
+};
