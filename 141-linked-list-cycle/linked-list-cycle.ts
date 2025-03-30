@@ -22,14 +22,14 @@
 
 function hasCycle(head: ListNode | null): boolean {
 
-    let hashmap = new Map;
+    let hashmap = new Set<ListNode>();
 
     while(head) {
         //cycle found if next node is a previously seen node
         if(hashmap.has(head.next)) return true
 
         //set the current head in our hashmap as we iterate
-        hashmap.set(head, 0);
+        hashmap.add(head);
 
         //increment head for next iteration
         head = head.next 
