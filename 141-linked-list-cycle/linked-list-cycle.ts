@@ -20,21 +20,45 @@
 
  */
 
+
+//this is good with O(n) time and O(n) space. But we can do one with O(1) space
+// function hasCycle(head: ListNode | null): boolean {
+
+//     let hashmap = new Set<ListNode>(); //adding this static type sped up the algorithm
+
+//     while(head) {
+//         //cycle found if next node is a previously seen node
+//         if(hashmap.has(head.next)) return true
+
+//         //set the current head in our hashmap as we iterate
+//         hashmap.add(head);
+
+//         //increment head for next iteration
+//         head = head.next 
+//     }
+
+//     return false
+    
+// };
+
+//this version used the toirtise and the hare algorithm
+//if they are ever equal, we have a cycle
 function hasCycle(head: ListNode | null): boolean {
 
-    let hashmap = new Set<ListNode>();
+    let fast = head;
+    let slow = head;
 
-    while(head) {
-        //cycle found if next node is a previously seen node
-        if(hashmap.has(head.next)) return true
+    while(fast && fast.next) { //fast.next is not null
 
-        //set the current head in our hashmap as we iterate
-        hashmap.add(head);
+        fast = fast.next.next; //increment fast by 2
+        slow = slow.next //increment slow by 1
 
-        //increment head for next iteration
-        head = head.next 
+        if(fast == slow) { //if these ever equal after the starting point, we have a cycle
+            return true
+        }
+
     }
 
     return false
-    
-};
+
+}
