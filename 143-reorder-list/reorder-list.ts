@@ -45,8 +45,8 @@ function reorderList(head: ListNode | null): void {
     let prev = null;
     let node = second;
     while(node) {
-        let nextNode = node.next; //save in temp 4
-        node.next = prev; //reverse null
+        let nextNode = node.next; //save in temp
+        node.next = prev; //reverse
         prev = node; //increment prev
         node = nextNode; //increment second head
     }
@@ -58,11 +58,10 @@ function reorderList(head: ListNode | null): void {
         let temp2 = second.next;
 
         first.next = second; //insert second into head
-        // first = first.next; //increment to new value we just inserted
         second.next = temp1; //add pointer to the value
 
-        first = temp1;
-        second = temp2;
+        first = temp1; //increment
+        second = temp2; //increment
 
     }
     
