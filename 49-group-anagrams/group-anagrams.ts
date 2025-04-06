@@ -1,32 +1,34 @@
 function groupAnagrams(strs: string[]): string[][] {
 
     /*
-    what we need:
-    1. way to determine anagrams -> array with 26 elements each representing a character (strs[i] consists of lowercase English letters.)
-    2. Array of arrays where we store the values in each particular section as we move through it
-      a) key is the ordered letterset
+    need a way to determine if each string has the same amount of characters
 
+    loop through the strings, determine characters, collapse this into a key, save the string to the array of arrays with the key
 
+    return using spread operator for every group within the array
     */
 
-    let group = new Map(); //set, get, has
+    const result = new Map();
 
-    for (let i=0; i<strs.length; i++) {
-        let letterArray = new Array(26).fill(0);
-        let word = strs[i];
+    for(let i=0; i<strs.length; i++) {
 
+        const word = strs[i];
+
+        const letterCount = new Array(26).fill(0); //array with 26 entries and all 0
         for(let c=0; c<word.length; c++) {
-            let index = word[c].charCodeAt(0) - "a".charCodeAt(0); //gives us the index number
-            letterArray[index] = letterArray[index] += 1; //add 1 to the value at that index
+            const charCode = word[c].charCodeAt(0) - "a".charCodeAt(0);
+            letterCount[charCode]++; //add one to that index
         }
 
-        //once done we have an array 
-        let letters = letterArray.toString()
-
-        group.set(letters, group.has(letters) ? [...group.get(letters), word] : [word]);
+        const key = letterCount.toString(); //collapse array into the letter count
+        
+        //if result has key, spread the word into existing. if not, set a new one
+        result.set(key, result.has(key) ? [...result.get(key), word] : [word]);
 
     }
 
-    return [...group.values()]
+    return [...result.values()]
+
+
     
 };
