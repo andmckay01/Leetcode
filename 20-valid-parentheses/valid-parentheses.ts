@@ -1,27 +1,30 @@
 function isValid(s: string): boolean {
 
-    //need to use a stack, LIFO, we add to it and we remove from it
-    //adding and removing from the end
+    /*
+    order matters -> stack
+    type matters -> dictionary (map)
+    */
 
-    //hashMap of what parenthesis to expect
-    let closeToOpen = {")" : "(", "}" : "{", "]" : "["}
+    let closeToOpen = {")": "(", "}": "{", "]": "["};
     let stack = [];
 
-    //use of for things that are not inherently iterable
-    for(let c of s) { //closeToOpen(c) is checking that something is a closing
-        if(stack.length > 0 && closeToOpen[c]) {
-            if(stack[stack.length-1] == closeToOpen[c]) {
-                stack.pop();
-            } else {
-                return false; //if the expected parenthesis was not found
-            }
+    for(let bracket of s) {
+    
+        if(!closeToOpen[bracket]) {
+            stack.push(bracket);
         } else {
-            stack.push(c);
+            if(closeToOpen[bracket] !== stack[stack.length - 1] || stack.length == 0) {
+                return false
+            } else {
+                stack.pop();
+            }
         }
     }
 
     if(stack.length == 0) {
         return true
-    } else return false
-
+    } else {
+        return false
+    }
+    
 };
