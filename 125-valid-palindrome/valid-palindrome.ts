@@ -1,35 +1,41 @@
+function alphaNum(c: string): boolean {
+    return (c >= "A" && c <= "Z" ||
+        c >= "a" && c <= "z" ||
+        c >= "0" && c <= "9")
+}
+
 function isPalindrome(s: string): boolean {
 
-    let l=0
-    let r = s.length - 1 - l; //j is at end
-    while(l < r) { //looping i from start to j, if one half works the other half will too
+    /*
+    convert and remove all spaces
+    left and right pointer
+    increment while checking for the pointers to be equal
+    stop once the pointers equal eachother
+    */
 
-        //move pointers until we have alphaNum
-        while(l < r && !alphaNum(s[l])) {
-            l++
-        }
-        while(r > l && !alphaNum(s[r])) {
-            r--
-        }
+    let l = 0;
+    let r = s.length - 1;
 
-        //if these are not the same, return false
-        if(s[l].toLowerCase() != s[r].toLowerCase()) return false
+    let lowercase = s.toLowerCase();
 
-        //iterate pointers
-        l++, r--
+    //increment right until we have character
+    //increment left until we have character
+
+    while(l < r) {
+
+        //increment until we have a alphaNum characters
+        while(l < r && !alphaNum(lowercase[l])) l++;
+        while(l < r && !alphaNum(lowercase[r])) r--;
+
+        console.log(lowercase[l], lowercase[r])
+
+        if(lowercase[l] !== lowercase[r]) return false;
+
+        //iterate 1 after the check
+        l++, r--;
 
     }
 
-    //if nothing flags
-    return true;
+    return true
     
 };
-
-function alphaNum(c) {
-    return (c >= 'A' && c <= 'Z' || 
-            c >= 'a' && c <= 'z' || 
-            c >= '0' && c <= '9');
-};
-
-//n for main while loop gives us O(n) for time complexity
-//O(1) for space complexity because we're not creating any new string
