@@ -25,9 +25,6 @@ function hasCycle(head: ListNode | null): boolean {
     let slow = head;
     let fast = head;
 
-    //increment until slow is at the end
-    //fast should never be behind slow
-
     while(fast && fast.next) {
 
         if(fast.next == slow) return true
