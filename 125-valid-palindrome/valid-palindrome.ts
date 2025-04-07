@@ -18,16 +18,11 @@ function isPalindrome(s: string): boolean {
 
     let lowercase = s.toLowerCase();
 
-    //increment right until we have character
-    //increment left until we have character
-
     while(l < r) {
 
         //increment until we have a alphaNum characters
         while(l < r && !alphaNum(lowercase[l])) l++;
         while(l < r && !alphaNum(lowercase[r])) r--;
-
-        console.log(lowercase[l], lowercase[r])
 
         if(lowercase[l] !== lowercase[r]) return false;
 
