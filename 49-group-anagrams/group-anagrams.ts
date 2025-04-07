@@ -22,16 +22,10 @@ function groupAnagrams(strs: string[]): string[][] {
 
         }
 
-        console.log(characterArray);
-
         let key = characterArray.toString();
-
-        //if it exists, we add to that
-        //if not, we create a new one
 
         if(grouped.has(key)) {
             grouped.set(key, [...grouped.get(key), word])
-            console.log(grouped)
         } else {
             grouped.set(key, [word])
         }
