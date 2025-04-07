@@ -30,18 +30,15 @@ function hasCycle(head: ListNode | null): boolean {
 
     while(fast && fast.next) {
 
-        if(fast.next == slow) return true
+
 
         slow = slow.next;
         fast = fast.next.next;
 
+        if(fast == slow) return true
+
     }
 
     return false
-
-    //stop when fast.next is null
-
-
-
     
 };
