@@ -1,34 +1,40 @@
-function alphaNum(c: string): boolean {
-    return (c >= "A" && c <= "Z" ||
-        c >= "a" && c <= "z" ||
-        c >= "0" && c <= "9")
-}
-
 function isPalindrome(s: string): boolean {
 
     /*
-    convert and remove all spaces
-    left and right pointer
-    increment while checking for the pointers to be equal
-    stop once the pointers equal eachother
+    use alpha num, toString(), iterate through something that is not alphanum
+    use pointers left and right
+    check if all are equal, return false if they ever are not
     */
 
     let l = 0;
     let r = s.length - 1;
 
-    while(l < r) {
+    while(l <= r) {
 
-        //increment until we have a alphaNum characters
-        while(l < r && !alphaNum(s[l])) l++;
-        while(l < r && !alphaNum(s[r])) r--;
+        //increment our left and right pointers until we find alphaNum
+        while(l < r && !isAlphaNum(s[l])) {
+            l++;
+        }
 
-        if(s[l].toLowerCase() !== s[r].toLowerCase()) return false;
+        while(l < r && !isAlphaNum(s[r])) {
+            r--;
+        }
 
-        //iterate 1 after the check
-        l++, r--;
-
+        //check equality and then increment
+        if(s[l].toLowerCase() !== s[r].toLowerCase()) {
+            return false;
+        } else {
+            l++;
+            r--;
+        }
     }
 
     return true
     
+};
+
+function isAlphaNum(c: string): boolean {
+    return (c >= "a" && c <= "z" ||
+            c >= "A" && c <= "Z" ||
+            c >= "0" && c <= "9")
 };
