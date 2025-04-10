@@ -1,31 +1,32 @@
 function search(nums: number[], target: number): number {
-        
+
+    /*
+    ascending tells us we can use binary search
+    use a pointer to decide where to search
+    check if number is more or less than what we access
+
+    O(n log n)
+
+    */
+
     let l = 0;
-    let r = nums.length-1;
+    let r = nums.length - 1;
+
 
     while(l <= r) {
-        let m = Math.floor((r+l)/2);
 
-        if(target < nums[m]) {
-            r = m-1;
-        } else if (target > nums[m]) {
-            l = m+1
-        } else { 
-            return m;
+        let x = Math.floor((r + l) / 2);
+
+        if(nums[x] < target) {
+            l = x + 1;
+        } else if (nums[x] > target) {
+            r = x - 1;
+        } else {
+            return x
         }
 
     }
 
     return -1
-
+    
 };
-
-/*
-When it's sorted we can look at the midpoint and see if it's smaller or larger than the target
-Then we recurse and do the same thing again 
-Once the thing we're searching for hits the midpoint, we have found our value
-
-While loop can will evaluate to log(base 2)n because every loop eliminates half of the values
-
-
-*/
