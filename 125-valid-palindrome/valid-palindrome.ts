@@ -11,8 +11,6 @@ function isPalindrome(s: string): boolean {
     let l = 0;
     let r = s.length - 1;
 
-    console.log(s);
-
     while(l <= r) { //equal to?
 
         //increment until we are at alphaNum
