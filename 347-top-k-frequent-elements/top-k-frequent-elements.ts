@@ -21,7 +21,7 @@ function topKFrequent(nums: number[], k: number): number[] {
 
     //add to the freq array with the index being our count
     for(let [num, frequency] of count) {
-        freq[frequency] = [...freq[frequency], num]
+        freq[frequency].push(num)
         // freq[frequency] = num;
     }
 
