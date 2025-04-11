@@ -10,8 +10,6 @@ function topKFrequent(nums: number[], k: number): number[] {
     let count = new Map(); //number: count
     let freq = Array.from({length: nums.length + 1}, () => [])
 
-    console.log(freq);
-
     //count the occurence of each number
     for(let i=0; i<nums.length; i++) {
         if(count.has(nums[i])) {
