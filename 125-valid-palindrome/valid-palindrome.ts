@@ -1,17 +1,21 @@
 function isPalindrome(s: string): boolean {
 
     /*
-    use alpha num, toString(), iterate through something that is not alphanum
-    use pointers left and right
-    check if all are equal, return false if they ever are not
+    use left and right pointers
+    use while loops to iterate if it's not an alphanumeric character
+    main while loop 
+    break at any point
+    return true at bottom
     */
 
     let l = 0;
     let r = s.length - 1;
 
-    while(l <= r) {
+    console.log(s);
 
-        //increment our left and right pointers until we find alphaNum
+    while(l <= r) { //equal to?
+
+        //increment until we are at alphaNum
         while(l < r && !isAlphaNum(s[l])) {
             l++;
         }
@@ -20,9 +24,8 @@ function isPalindrome(s: string): boolean {
             r--;
         }
 
-        //check equality and then increment
         if(s[l].toLowerCase() !== s[r].toLowerCase()) {
-            return false;
+            return false
         } else {
             l++;
             r--;
@@ -30,6 +33,7 @@ function isPalindrome(s: string): boolean {
     }
 
     return true
+
     
 };
 
@@ -37,4 +41,4 @@ function isAlphaNum(c: string): boolean {
     return (c >= "a" && c <= "z" ||
             c >= "A" && c <= "Z" ||
             c >= "0" && c <= "9")
-};
+}
