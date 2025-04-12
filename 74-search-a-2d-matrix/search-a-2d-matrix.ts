@@ -13,15 +13,11 @@ function searchMatrix(matrix: number[][], target: number): boolean {
     let topRow = 0;
     let bottomRow = ROWS - 1;
 
-    console.log(matrix);
-    console.log('problem target: ', target)
-
     while(topRow <= bottomRow) {
         let currentRow = Math.floor((topRow + bottomRow) / 2);
 
         if(target >= matrix[currentRow][0] && target <= matrix[currentRow][COLS - 1]) {
             //use binary search again
-
             let l = 0;
             let r = matrix[currentRow].length - 1;
 
