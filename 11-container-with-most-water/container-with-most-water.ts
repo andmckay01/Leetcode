@@ -22,26 +22,17 @@ function maxArea(height: number[]): number {
     let r = height.length - 1;
     let maxAmount = -Infinity;
 
-    console.log('l: ', l);
-    console.log('r: ', r);
-    console.log(maxAmount);
-
     while(l < r) {
 
         //calculate max
         maxAmount = Math.max(maxAmount, Math.min(height[r], height[l]) * (r - l));
 
-        // console.log(maxAmount);
-        // console.log(l);
-
         //increment
         if(height[l] < height[r]) {
-            // console.log('less than')
-            // console.log(height[l])
-            l = l+1
+            l++;
             console.log(l);
         } else {
-            r = r-1;
+            r--;
         }
 
     }
