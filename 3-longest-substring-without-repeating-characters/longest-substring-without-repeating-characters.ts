@@ -11,7 +11,7 @@ function lengthOfLongestSubstring(s: string): number {
     let l = 0;
     let maxLength = 0;
 
-    //c is our implicit right pointer
+    //r is our implicit right pointer
     for(let r=0; r<s.length; r++) {
 
         while(charSet.has(s[r])) {
