@@ -13,8 +13,6 @@ function minEatingSpeed(piles: number[], h: number): number {
     let r = Math.max(...piles); //remember to spread the array;
     let res = r;
 
-    console.log(res);
-
     while(l <= r) {
         const k = Math.ceil((l + r) / 2);
 
