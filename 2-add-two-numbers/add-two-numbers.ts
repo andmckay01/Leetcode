@@ -31,6 +31,7 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
             newValue = newValue % 10;
             carry = 1;
         }
+        
         //add to the next node in the newList and increment
         node.next = new ListNode(newValue);
         node = node.next;
