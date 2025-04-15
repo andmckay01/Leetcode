@@ -18,8 +18,6 @@ function minEatingSpeed(piles: number[], h: number): number {
     while(l <= r) {
         const k = Math.ceil((l + r) / 2);
 
-        console.log('k: ', k);
-
         let hours = 0;
         for(let p of piles) {
             hours += Math.ceil(p / k);
