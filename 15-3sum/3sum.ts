@@ -39,8 +39,6 @@ function threeSum(nums: number[]): number[][] {
         }
     }
 
-    console.log(res);
-
     return res;
     
 };
