@@ -31,7 +31,7 @@ function threeSum(nums: number[]): number[][] {
             } else {
                 res.push([a, nums[l], nums[r]]);
                 l++;
-                // r--;
+                r--;
                 while(nums[l] == nums[l-1] && l < r) {
                     l++;
                 }
