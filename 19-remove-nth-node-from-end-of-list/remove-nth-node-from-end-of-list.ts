@@ -13,12 +13,6 @@
 function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
 
     /*
-    iterate through to the end (we don't know the length of the list)
-    save n and listnode value to a map
-    at the end we pull the values of n and n+1
-    remove n
-    then point n-1 to n+1
-
     one-pass is a two-pointer solution where we initially shift our right pointer by n
     then when there is no node.next for the right pointer, our left pointer is what we need
     but we need to save the previous pointer so that we can point that to our l+1
@@ -35,9 +29,6 @@ function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
         n--; //decrement n
     }
 
-    console.log(n);
-    console.log(right);
-
     //shift left and right until right doesn't exist
     while(right) {
         left = left.next;
@@ -45,15 +36,9 @@ function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
 
     }
 
-    //save our variables, left is going to be at 
-    //current node is where we need to be
-    //
+    //left is in the correct position
     left.next = left.next.next; //skip over
 
     return dummy.next;
-
-
-
-
     
 };
