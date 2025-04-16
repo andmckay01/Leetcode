@@ -13,13 +13,7 @@ function findMin(nums: number[]): number {
     while(l < r) {
 
         m = l + Math.floor((r - l) / 2);
-
-        m = Math.floor((r + l) / 2);
-
-        console.log('l: ', l, 'nums[l]: ', nums[l]);
-        console.log('r: ', r, 'nums[r]: ', nums[r]);
-        console.log('m: ', m, 'nums[m]: ', nums[m]);
-        console.log('----------');
+        // m = Math.floor((r + l) / 2);
 
         if(nums[r] > nums[m]) {
             r = m;
