@@ -1,39 +1,47 @@
 function threeSum(nums: number[]): number[][] {
 
     /*
-    first we sort the array
-    then we find the first value (a) 
-    then we essentially do sorted twosum to find the other 2 values (b and c) that fulfill our condition
-    O(n log n) + O(n^2) simplifies to O(n^2) time complexity
-    It's also O(1) constant space
+    our numbers array must first be sorted
+    a, b, c
+    create a loop to find our a, then we use binary search to find our b and c that satisfies the condition
+    save anything that satisfies to our output array as itself an array
+    1 main loop driven by nums (leftmost number)
+      we need to have a condition where if the current index = previous index, continue to increment
+    2nd loop is two sum
     */
 
-    nums.sort((a,b) => a - b); //sort numbers array 
+    nums.sort((a, b) => a - b);
     let res = [];
 
-    for(let i=0; i<nums.length; i++) { //this loop finds our a (initial value)
-        let a = nums[i];
-        if(i > 0 && a == nums[i-1]) { //this condition increments a until we find a different value
-            continue 
+    for(let i=0; i<nums.length; i++) {
+
+        if(i>0 && nums[i] == nums[i-1]) {
+            continue //we don't want to use the same digit for a more than once
         }
 
-        let l = i + 1; //start at the next index
-        let r = nums.length - 1; //start at our last index
+        let a = i //current pointer
+        let b = i+1; //one past
+        let c = nums.length - 1; //endpoint
 
-        //find the other two values
-        while (l < r) {
-            let sum = nums[i] + nums[l] + nums[r];
-            
-            if(sum > 0) { //if too big
-                r--; //decrease sum
-            } else if(sum < 0) {
-                l++; //increase sum
+        while(b < c) {
+
+            while(b < c && a == b) {
+                b++;
+            }
+
+            let sum = nums[a] + nums[b] + nums[c];
+
+            //increment at the end based on condition
+            if(sum > 0) {
+                c--;
+            } else if (sum < 0) {
+                b++;
             } else {
-                res.push([a, nums[l], nums[r]]);
-                l++;
-                r--;
-                while(nums[l] == nums[l-1] && l < r) {
-                    l++;
+                res.push([nums[a], nums[b], nums[c]])
+                b++;
+                c--;
+                while(nums[b] == nums[b-1] && b < c) {
+                    b++;
                 }
             }
         }
