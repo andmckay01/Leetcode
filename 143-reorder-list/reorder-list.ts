@@ -16,53 +16,57 @@
 function reorderList(head: ListNode | null): void {
 
     /*
-    we're basically reordering the list with 2 pointers instead of 1
-
-    if we get a time complexity of O(n) we will be happy.
-
-    steps:
-    1. use a slow and fast pointer to see where our midpoint is
-    2. break the lists
-    3. reverse the 2nd list
-    4. merge the 2 lists
+    need to find our midpoint
+    split the list into 2
+    reverse the 2nd list
+    then splice the lists together into a new list that we return
     */
 
+    //find our midpoint by using toirtise and hare
     let slow = head;
-    let fast = head.next;
+    let fast = head;
 
-    //figure out where we will separate the lists
-    while(fast && fast.next) { //increment until fast cannot be incremented
-        slow = slow.next; //increment 1
-        fast = fast.next.next; //increment 2
+    //this will exist once we cannot move fast anymore
+    while(fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
     }
 
-    //save our list nodes and separate our lists
     let first = head;
-    let second = slow.next; //start of new 2nd list
-    slow.next = null; //separate the lists by breaking the link
+    let second = slow.next; //end of the first list is where our slow pointer is, slow.next is start of 2nd
+    slow.next = null; //break the link
 
-    //reverse the list
+    //reverse the 2nd list
     let prev = null;
     let node = second;
     while(node) {
-        let nextNode = node.next; //save in temp
-        node.next = prev; //reverse
-        prev = node; //increment prev
-        node = nextNode; //increment second head
+        let nextNode = node.next;
+        node.next = prev;
+        prev = node;
+        node = nextNode;
     }
     second = prev;
 
-    //loop through 2nd list and splice into the 1st
+    console.log(first)
+    console.log(second)
+
+    //once reversed, splice together
     while(second) {
+
+        //temp variables
         let temp1 = first.next;
         let temp2 = second.next;
 
-        first.next = second; //insert second into head
-        second.next = temp1; //add pointer to the value
+        //add second to first
+        first.next = second;
 
-        first = temp1; //increment
-        second = temp2; //increment
+        //re-link
+        second.next = temp1;
+
+        //increment
+        first = temp1;
+        second = temp2;
 
     }
-    
+
 };
