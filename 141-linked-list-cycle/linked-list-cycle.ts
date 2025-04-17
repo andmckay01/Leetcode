@@ -33,9 +33,6 @@ function hasCycle(head: ListNode | null): boolean {
 
     while(fast && fast.next) {
 
-        // console.log('fast: ', fast);
-        // console.log('fast.next: ', fast.next);
-
         if(fast.next == slow) {
             return true;
         }
