@@ -15,7 +15,7 @@ function threeSum(nums: number[]): number[][] {
 
     for(let i=0; i<nums.length; i++) {
 
-        if(i>0 && nums[i] == nums[i-1]) {
+        if(nums[i] == nums[i-1]) { //i>0 is crucial so that we don't ever continue on the first one
             continue //we don't want to use the same digit for a more than once
         }
 
