@@ -33,6 +33,7 @@ function hasCycle(head: ListNode | null): boolean {
 
     while(fast && fast.next) {
 
+        //check if they ever equal (they shouldn't)
         if(fast.next == slow) {
             return true;
         }
