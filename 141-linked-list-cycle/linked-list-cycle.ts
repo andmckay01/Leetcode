@@ -26,6 +26,8 @@ function hasCycle(head: ListNode | null): boolean {
     stop once slow and fast equals each other
     */
 
+    if (!head || !head.next) return false;
+
     let slow = head;
     let fast = head;
 
