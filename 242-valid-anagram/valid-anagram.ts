@@ -12,8 +12,8 @@ function isAnagram(s: string, t: string): boolean {
 
     for(let i=0; i<s.length; i++) {
 
-        characterArray[s[i].charCodeAt(0) - "a".charCodeAt(0)]++;
-        characterArray[t[i].charCodeAt(0) - "a".charCodeAt(0)]--
+        characterArray[s[i].charCodeAt(0) - 97]++;
+        characterArray[t[i].charCodeAt(0) - 97]--
 
     }
 
