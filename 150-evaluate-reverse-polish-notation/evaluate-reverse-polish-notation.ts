@@ -24,21 +24,12 @@ function evalRPN(tokens: string[]): number {
 
     let stack = [];
 
-    console.log(tokens);
-
     for(let i=0; i<tokens.length; i++) {
-        console.log(stack);
         if(isDigit(tokens[i])) {
             stack.push(+tokens[i]); //add to stack
-            console.log(stack);
         } else {
-            const b = +stack.pop();
-            const a = +stack.pop();
-
-            console.log("b: ", b);
-            console.log("a: ", a);
-
-            console.log(operations[tokens[i]]);
+            const b = stack.pop();
+            const a = stack.pop();
 
             //find the proper operations function and call it with our operands
             const result = operations[tokens[i]](a, b);
