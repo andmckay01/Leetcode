@@ -24,7 +24,7 @@ function reorderList(head: ListNode | null): void {
 
     //find our midpoint by using toirtise and hare
     let slow = head;
-    let fast = head;
+    let fast = head.next;
 
     //this will exist once we cannot move fast anymore
     while(fast && fast.next) {
@@ -46,9 +46,6 @@ function reorderList(head: ListNode | null): void {
         node = nextNode;
     }
     second = prev;
-
-    console.log(first)
-    console.log(second)
 
     //once reversed, splice together
     while(second) {
