@@ -1,48 +1,34 @@
 function searchMatrix(matrix: number[][], target: number): boolean {
 
     /*
-    non-descending order tells us we can use binary search
-    first find the row it's in
-    then find the value in the row
-    if nothing finds, then we return false
+    The previous time i solved this problem it required that we found the proper row and col separately
+    But because this is in order, we can simply treat it as one long list
+    use binary search where we compare target to the value
     */
 
-    const ROWS = matrix.length;
-    const COLS = matrix[0].length;
+    let rows = matrix.length;
+    let cols = matrix[0].length;
 
-    let topRow = 0;
-    let bottomRow = ROWS - 1;
+    let l = 0;
+    let r = rows * cols - 1; //full length of the matrix
 
-    while(topRow <= bottomRow) {
-        let currentRow = Math.floor((topRow + bottomRow) / 2);
+    while(l <= r) {
+        const m = l + Math.floor((r - l) / 2); //midpoint without integer overflow
 
-        if(target >= matrix[currentRow][0] && target <= matrix[currentRow][COLS - 1]) {
-            //use binary search again
-            let l = 0;
-            let r = matrix[currentRow].length - 1;
-
-            while(l <= r) { //this will break if l and r move past one another
-
-                const m = Math.floor((l + r) / 2);
-                if (target > matrix[currentRow][m]) {
-                    l = m + 1
-                } else if (target < matrix[currentRow][m]) {
-                    r = m - 1
-                } else {
-                    return true //if the m == target
-                }
-            }
-        return false 
-
-        } else if (target > matrix[currentRow][COLS - 1]) {
-            topRow = currentRow + 1;
-        } else if (target < matrix[currentRow][0]) {
-            bottomRow = currentRow - 1;
-        } else {
-            break;
+        //find proper row and col based on m
+        const row = Math.floor(m / cols);
+        const col = m % cols; //the remainder divided by the total cols IS the current column index
+        
+        if(target > matrix[row][col]) {
+            l = m + 1;
+        } else if (target < matrix[row][col]) {
+            r = m - 1;
+        } else { //if ==
+            return true
         }
+        
     }
 
-    return false //return false if the value is outside of what we see on the endpoints of rows
+    return false
     
 };
