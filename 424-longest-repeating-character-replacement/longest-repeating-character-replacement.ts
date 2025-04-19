@@ -12,19 +12,19 @@ function characterReplacement(s: string, k: number): number {
 
     //main loop that controls how far we move to the right
     for(let r = 0; r < s.length; r++) {
-        const length = 1 + r - l;
+        // const length = 1 + r - l;
 
         //set the count of characters
         count.set(s[r], (count.get(s[r]) || 0) + 1);
 
         //if condition fails we reduce count and reduce our window
-        if(length - Math.max(...count.values()) > k) {
+        if(1 + r - l - Math.max(...count.values()) > k) {
             count.set(s[l], count.get(s[l]) - 1); //reduce count
             l++; //increment l
         
         //if condition passes we save to res and widen our window
         } else {
-            res = Math.max(res, length)
+            res = Math.max(res, 1 + r - l)
         }
     }
 
