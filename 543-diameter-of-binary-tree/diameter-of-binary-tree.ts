@@ -29,8 +29,6 @@ function diameterOfBinaryTree(root: TreeNode | null): number {
         let left = dfs(curr.left);
         let right = dfs(curr.right);
 
-        console.log('max of left, right: ', Math.max(left, right))
-
         //save to res and figure out what to return
         res = Math.max(res, left + right); //res is current res or the max of the current leg + 1
         return 1 + Math.max(left, right);
