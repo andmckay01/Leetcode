@@ -32,22 +32,19 @@ function isBalanced(root: TreeNode | null): boolean {
         //find height and return
         const height =  1 + Math.max(left[1], right[1]);
 
-        // If either subtree is unbalanced, the whole tree is unbalanced
-        if (!left[0] || !right[0]) {
-            return [false, 0]; // Height doesn't matter if already unbalanced
-        }
+        //true or false for balanced?
+        const balanced = (left[0] && right[0] && 
+        Math.abs(right[1] - left[1]) <= 1);
 
-        if(Math.abs(right[1] - left[1]) > 1) {
-            console.log([false, height])
-            return [false, height]
-        } else {
-            console.log([true, height])
+        if(balanced) {
             return [true, height]
+        } else {
+            return [false, height]
         }
 
     }
 
     let result = dfs(root);
-    return result[0]
+    return result[0];
     
 };
