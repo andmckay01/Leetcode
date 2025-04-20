@@ -17,26 +17,27 @@ function diameterOfBinaryTree(root: TreeNode | null): number {
     let res = 0;
 
     /*
-    computing the diameter is done with recursion
-    - need a member / global variable where we track the max length of nodes
-      - this is computed using 1 + the max lengh of our children
-    - height of each tree at each node needs to be returned up to the node
+    we need to save a res variable that we iteratively track the max diameter
+    use a recursive call to our dfs function where we calculate res and then return max height of each node
+    at the end, we recurse all the way back up, saving to our res the whole way, effectively finding the max
     */
 
-    function dfs(curr) {
-
+    function dfs(curr) { //curr will be current node
         if(!curr) return 0;
 
-        //recurse through our dfs algorithm
+        //call our functions
         let left = dfs(curr.left);
         let right = dfs(curr.right);
 
-        //set res and return height
-        res = Math.max(res, left + right);
-        return 1 + Math.max(left, right);
-    }
+        console.log('max of left, right: ', Math.max(left, right))
 
-    dfs(root); //call dfs at the root
+        //save to res and figure out what to return
+        res = Math.max(res, left + right); //res is current res or the max of the current leg + 1
+        return 1 + Math.max(left, right);
+
+    };
+
+    dfs(root);
     return res;
     
 };
