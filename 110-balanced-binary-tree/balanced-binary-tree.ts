@@ -38,8 +38,10 @@ function isBalanced(root: TreeNode | null): boolean {
         }
 
         if(Math.abs(right[1] - left[1]) > 1) {
+            console.log([false, height])
             return [false, height]
         } else {
+            console.log([true, height])
             return [true, height]
         }
 
