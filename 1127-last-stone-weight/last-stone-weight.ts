@@ -12,7 +12,7 @@ function lastStoneWeight(stones: number[]): number {
     enqueue
     dequeue
     front will be max in this case
-    last
+    end
     size
     */
 
