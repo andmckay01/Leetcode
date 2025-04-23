@@ -4,6 +4,14 @@ function lastStoneWeight(stones: number[]): number {
     run the simulation
     need a way to get the top 2 stones for each iteration, max Heap
     bucket sort would be even more efficient but we'll do that later
+
+    time complexity of this is O(n log n)
+    because we need to iterate through the stones once to add them to the maxheap (n)
+    then using the heap we are inserting values which costs (log n)
+    O(n * logn)
+
+    Extracting maximum or minimum is log n
+    Inserting a value is log n
     */
 
     let maxHeap: MaxPriorityQueue<number> = new MaxPriorityQueue();
