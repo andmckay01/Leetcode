@@ -1,38 +1,34 @@
 function subsets(nums: number[]): number[][] {
 
     /*
-    Visualize a tree that is created with every possible combination
-    We start by deciding to add 1 or []
-    Then each node of that we add 2 or []
-    etc.
-    
-    For our loop, if we ever get to a point where the pointer is equal to our nums length, we simply return (out of bounds)
-
-    using recursion will allow subset to to be returned
-
-    no matter what, this is O(n^2), so why not just keep it easy and do a nested loop?\
+    use dfs recursive call
+    we construct a tree where we recursively call the dfs
+      once with the new value added to the subset
+      once with the new value removed (never added) so that we can move down the tree
     */
 
     let res = [];
     let subset = [];
 
-    function dfs(i: number): void {
+    //do things here
+    function dfs(i = 0) {
 
-        if(i >= nums.length) {
-            res.push([...subset]) //this is a leaf, append
+        //if we are at the end, append the subset to our result
+        if (i >= nums.length) {
+            res.push([...subset]);
             return
         }
 
-        //for the left tree
+        //add to our tree
         subset.push(nums[i]);
         dfs(i + 1);
 
-        //for the right tree
+        //remove from our tree and recursively call
         subset.pop();
-        dfs(i + 1); //called with one less value in the subset
+        dfs(i + 1);
     }
 
-    dfs(0);
+    dfs();
     return res;
-    
+
 };
