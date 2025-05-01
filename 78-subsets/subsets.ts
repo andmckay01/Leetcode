@@ -10,14 +10,16 @@ function subsets(nums: number[]): number[][] {
     let res = [];
     let subset = [];
 
-    //do things here
     function dfs(i = 0) {
 
         //if we are at the end, append the subset to our result
         if (i >= nums.length) {
             res.push([...subset]);
+            console.log('res: ', res);
             return
         }
+
+        console.log('subset: ', subset);
 
         //add to our tree
         subset.push(nums[i]);
