@@ -33,7 +33,6 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
         if (newValue > 9) {
             newValue = newValue % 10; //set newValue
             carry = 1 //set carry
-            console.log('new value: ', newValue);
         }
 
         //use new value for new node
