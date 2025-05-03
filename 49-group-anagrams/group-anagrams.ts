@@ -1,38 +1,30 @@
 function groupAnagrams(strs: string[]): string[][] {
 
     /*
-    lowercase english letters -> dictionary where 
-    1. count characters
-    2. construct key
-    3. add to a map
-    4. return the words in this map
+    use a character array to set a key for group
+    collapse to string, write to an array of arrays
+
     */
 
-    let grouped = new Map<string, string[]>();
+    let res = new Map<string, string[]>();
 
-    for(let i=0; i<strs.length; i++) {
+    for (let i = 0; i < strs.length; i++ ) {
+        
+        let characterArray = new Array(26).fill(0);
 
-        const word: string = strs[i]
-
-        const characterArray = new Array(26).fill(0); //array with 26 0's
-
-        for(let c of word) {
-
+        for (let c of strs[i]) {
             characterArray[c.charCodeAt(0) - "a".charCodeAt(0)]++;
-
         }
 
-        let key = characterArray.toString();
+        const key = characterArray.toString();
 
-        if(grouped.has(key)) {
-            grouped.set(key, [...grouped.get(key), word])
+        if( res.has(key) ) {
+            res.set(key, [...res.get(key), strs[i]])
         } else {
-            grouped.set(key, [word])
+            res.set(key, [strs[i]])
         }
-
     }
 
-    return [...grouped.values()]
-
+    return [...res.values()]
     
 };
