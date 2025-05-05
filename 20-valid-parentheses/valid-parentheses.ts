@@ -1,35 +1,45 @@
 function isValid(s: string): boolean {
 
     /*
-    need a mapping object we use to determine what parenthesis is required
-    use a stack to add things to the stack then remove them in the proper order
-
-    1. loop through, add to stack if open
-    2. if close, check if corresponding parenthesis exists and pop from stack
-    3. if at any point the condition does not work, return false
-    4. if at the end our stack is empty, return true
+    we need to use a stack to make sure parenthesis are in the right order
+    We also need a mapping object to map close to open
+    at the end, check if the array is empty
+    stack is LIFO
     */
 
-    let closeToOpen = {")": "(", "]": "[", "}": "{"};
-    let stack: string[] = [];
+    let closeToOpen = {"}":"{", "]":"[", ")":"("};
+    let stack = [];
 
-    for(let i=0; i<s.length; i++) {
-        if(!closeToOpen[s[i]]) { //if opening parenthesis
-            stack.push(s[i]);
-        } else {
-            //maps current closing to the open and checks if it exists at the end of stack
-            if(closeToOpen[s[i]] == stack[stack.length - 1]) {
-                stack.pop();
+
+    //for every character
+    for (const p of s) {
+
+        console.log(stack);
+        console.log("p: ", p);
+
+        //if closing
+        if ( closeToOpen[p] ) {
+
+            //if expected parenthesis is at the top of our stack
+            if ( closeToOpen[p] == stack[stack.length - 1] ) {
+                console.log(stack[stack.length - 1])
+                stack.pop()
+                console.log(stack[stack.length - 1])
+                console.log(stack);
+
             } else {
                 return false
             }
+        } else {
+            stack.push(p); //if opening, simply add to stack
+
         }
     }
 
-    if(stack.length == 0) { //if we loop through everything and the stack is empty
+    if ( stack.length == 0 ) {
         return true
     } else {
         return false
     }
-    
+
 };
