@@ -14,19 +14,12 @@ function isValid(s: string): boolean {
     //for every character
     for (const p of s) {
 
-        console.log(stack);
-        console.log("p: ", p);
-
         //if closing
         if ( closeToOpen[p] ) {
 
             //if expected parenthesis is at the top of our stack
             if ( closeToOpen[p] == stack[stack.length - 1] ) {
-                console.log(stack[stack.length - 1])
                 stack.pop()
-                console.log(stack[stack.length - 1])
-                console.log(stack);
-
             } else {
                 return false
             }
