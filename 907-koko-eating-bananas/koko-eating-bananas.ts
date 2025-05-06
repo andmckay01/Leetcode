@@ -28,13 +28,6 @@ function minEatingSpeed(piles: number[], h: number): number {
             hoursUsed += Math.ceil(p / k);
         }
 
-        console.log('BEFORE')
-        console.log(hoursUsed, h);
-        console.log('min: ', min);
-        console.log('k: ', k);
-        console.log('max: ', max);
-        console.log('-----------')
-
         //update k to eat more
         if (hoursUsed > h) {
             min = k + 1;
