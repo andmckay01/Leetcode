@@ -15,19 +15,18 @@
 function invertTree(root: TreeNode | null): TreeNode | null {
 
     /*
-    a binary tree has 2 children, left and right
-
-    we can use recursion to invert everything
+    switch the children of every node
+    use a recrusive call
     */
 
-    if (!root) return null;
+    if (!root) return null
 
-    //invert
-    let tmpRight = root.right;
+    //switch
+    let rightTemp = root.right;
     root.right = root.left;
-    root.left = tmpRight;
+    root.left = rightTemp;
 
-    //recursively call on both children
+    //resursive call
     invertTree(root.left);
     invertTree(root.right);
 
