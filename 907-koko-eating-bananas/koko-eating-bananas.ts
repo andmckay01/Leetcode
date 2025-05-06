@@ -1,38 +1,52 @@
 function minEatingSpeed(piles: number[], h: number): number {
 
     /*
-    If koko eats one pile she must eat that pile and only that pile for that hour, round with ceil
-    our L and R pointers will be the amount of bananas to eat (k), set at min and max piles
-    after we count hours used, we check if this is valid (hours <= h) and if so, update res
-    -> then we make k more agressive (by incrementing l higher)
-    else we make k less agressive by incrementing r lower
+    use binary search to find the best pile
+    instead of position, we use the height as our value to perform binary search on
+    try a k. If it is too agressive, make it less aggressive. If it is not enough aggressive, try again
+
+    dynamic programming
+
+    Do we need to sort? yes, for binary search
     */
 
-    let l = 0;
-    let r = Math.max(...piles);
-    let kResponse = r; //the amount of bananas koko eats each hour, defaulted to worst case
 
-    while(l <= r) {
+    //n log n??
+    piles.sort((a, b) => a - b); //this is ascending, b - 1 is descending
+
+    let min = 0;
+    let max = Math.max(...piles); //r is max piles
+    let kResponse = max;
+
+    while (min <= max) {
 
         let hoursUsed = 0;
-        let k = l + Math.ceil((r - l) / 2); //midpoint we want to try
+        let k = min + Math.floor((max - min) / 2);
 
-        for(let p of piles) {
-            hoursUsed += Math.ceil(p / k); //how many hours we use to eat each pile
-        };
-
-        console.log('hoursUsed: ', hoursUsed);
-            console.log('kResponse: ', kResponse);
-
-        if(hoursUsed <= h) {
-            kResponse = Math.min(kResponse, k); //update response
-            console.log('kResponse update: ', kResponse);
-
-            r = k - 1; //increment to eat more (more aggressive)
-        } else {
-            l = k + 1; //increment to eat more
+        //run the simulation
+        for (const p of piles) {
+            hoursUsed += Math.ceil(p / k);
         }
+
+        console.log('BEFORE')
+        console.log(hoursUsed, h);
+        console.log('min: ', min);
+        console.log('k: ', k);
+        console.log('max: ', max);
+        console.log('-----------')
+
+        //update k to eat more
+        if (hoursUsed > h) {
+            min = k + 1;
+
+        } else { //update to eat less
+            kResponse = Math.min(k, kResponse); //update k if we are at 0 or more hours
+            max = k - 1;
+        }
+
     }
+
+    //once min and max equal eachother, we simply return k
 
     return kResponse;
     
