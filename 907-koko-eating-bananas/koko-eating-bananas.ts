@@ -7,12 +7,8 @@ function minEatingSpeed(piles: number[], h: number): number {
 
     dynamic programming
 
-    Do we need to sort? yes, for binary search
+    Do we need to sort? no, because binary search is being done on the actual values of piles
     */
-
-
-    //n log n??
-    piles.sort((a, b) => a - b); //this is ascending, b - 1 is descending
 
     let min = 0;
     let max = Math.max(...piles); //r is max piles
