@@ -1,29 +1,30 @@
 function maxArea(height: number[]): number {
 
     /*
-    use a 2 pointer approach where l starts at 0 and r is at end
-    increment the lower of the 2
-    save maxVolume as we go
-    return when pointers meet our max value
+    use left and right pointer
+    move whichever is has the lower height
+    save the max volume as a dynamic variable
+    return when l and r =
     */
 
     let l = 0;
     let r = height.length - 1;
-    let maxVolume = -Infinity;
+    let maxVolume = 0;
 
     while (l < r) {
 
-        //set max volume
-        maxVolume = Math.max(maxVolume, Math.min(height[l], height[r]) * (r - l));
+        let newVolume = Math.min(height[r], height[l]) * (r - l)
+        maxVolume = Math.max(maxVolume, newVolume);
 
         //increment whichever is lower
-        if ( height[l] < height[r]) {
-            l++;
+        if (height[l] < height[r]) {
+            l++
         } else {
-            r--;
+            r--
         }
+
     }
 
-    return maxVolume;
+    return maxVolume
     
 };
