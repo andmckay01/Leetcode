@@ -5,7 +5,7 @@ function containsNearbyDuplicate(nums: number[], k: number): boolean {
     for (let i = 0; i < nums.length; i++) {
 
         //check condition
-        if (hashmap.has(nums[i]) && Math.abs(hashmap.get(nums[i]) - i) <= k) {
+        if (Math.abs(hashmap.get(nums[i]) - i) <= k) {
             return true
         } else {
             hashmap.set(nums[i], i);
