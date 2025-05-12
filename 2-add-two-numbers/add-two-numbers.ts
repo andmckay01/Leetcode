@@ -13,33 +13,35 @@
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
 
     /*
-    don't need to reverse
-    define the numbers or 0 so that they can be added up
-    define carry (dynamic variable)
+    add numbers
+    calculate carry
+    use a dummy node
+    increment
+    while loop break
     */
 
     let carry = 0;
-    let newList = new ListNode(0); //starting at 0, will return .next
-    let node = newList;
+    let dummy = new ListNode(0);
+    let node = dummy;
 
     while (l1 || l2 || carry > 0) {
 
         let l1Value = l1 ? l1.val : 0;
         let l2Value = l2 ? l2.val : 0;
-
-        let newValue = l1Value + l2Value + carry; //set newValue
-        carry = 0; //reset carry
+        let newValue = l1Value + l2Value + carry;
+        carry = 0;
 
         if (newValue > 9) {
-            newValue = newValue % 10; //set newValue
-            carry = 1 //set carry
+            newValue = newValue % 10;
+            carry = 1;
         }
 
-        //use new value for new node
-        node.next = new ListNode(newValue);
-        node = node.next; //increment
+        console.log(dummy);
 
-        //increment linked lists
+        node.next = new ListNode(newValue);
+        node = node.next;
+
+        //increment
         if (l1) {
             l1 = l1.next;
         }
@@ -47,7 +49,9 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
         if (l2) {
             l2 = l2.next;
         }
+
     }
 
-    return newList.next;
+    return dummy.next;
+    
 };
