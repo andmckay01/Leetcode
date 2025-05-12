@@ -36,8 +36,6 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
             carry = 1;
         }
 
-        console.log(dummy);
-
         node.next = new ListNode(newValue);
         node = node.next;
 
