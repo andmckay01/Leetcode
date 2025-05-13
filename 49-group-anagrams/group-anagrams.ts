@@ -1,30 +1,34 @@
 function groupAnagrams(strs: string[]): string[][] {
 
     /*
-    use a character array to set a key for group
-    collapse to string, write to an array of arrays
-
+    an anagram has the same number of each letter, we need to use an array for this
+    then we conver this array to a string
+    then we use this as the key in a map
     */
 
-    let res = new Map<string, string[]>();
+    let group = new Map();
 
-    for (let i = 0; i < strs.length; i++ ) {
-        
+    for (let s of strs) {
+
         let characterArray = new Array(26).fill(0);
 
-        for (let c of strs[i]) {
-            characterArray[c.charCodeAt(0) - "a".charCodeAt(0)]++;
+        //add to character array
+        for (let c of s) {
+            characterArray[c.charCodeAt(0) - 97]++;
         }
 
-        const key = characterArray.toString();
+        //to string
+        let key = characterArray.toString();
 
-        if( res.has(key) ) {
-            res.set(key, [...res.get(key), strs[i]])
+        //add to the map 
+        if ( group.has(key) ) {
+            group.set(key, [...group.get(key), s]);
         } else {
-            res.set(key, [strs[i]])
+            group.set(key, [s]);
         }
+
     }
 
-    return [...res.values()]
+    return [...group.values()];
     
 };
