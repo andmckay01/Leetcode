@@ -1,35 +1,38 @@
 function subsets(nums: number[]): number[][] {
 
     /*
-    use dfs recursive call
-    we construct a tree where we recursively call the dfs
-      once with the new value added to the subset
-      once with the new value removed (never added) so that we can move down the tree
+    need to use recursive dfs for each number to build the subset
+    only add to the map if it does not exist
+    each time we recurse down, we add to a subset array (deciding to include or not include the next number)
+    backtracking
+
+    build the subset as we decide to add or not
+    we then run dfs 
     */
 
     let res = [];
     let subset = [];
 
+    //i is defaulted to zero
     function dfs(i = 0) {
 
-        //if we are at the end, append the subset to our result
+        //if we are at the end, add the subset to our result
         if (i >= nums.length) {
             res.push([...subset]);
-            console.log('res: ', res);
             return
         }
 
-        console.log('subset: ', subset);
-
-        //add to our tree
+        //resursive call on the other indexes
         subset.push(nums[i]);
         dfs(i + 1);
 
-        //remove from our tree and recursively call
+        //other recursive call without the inclusion of the number
         subset.pop();
         dfs(i + 1);
+
     }
 
+    //run dfs and return
     dfs();
     return res;
 
