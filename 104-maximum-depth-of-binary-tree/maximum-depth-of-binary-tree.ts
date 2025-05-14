@@ -14,13 +14,8 @@
 
 function maxDepth(root: TreeNode | null): number {
 
-    /*
-    use a function 
-    */
+    if (!root) return 0;
 
-    if(!root) return 0; //if the root does not exist
-
-    //the 1 + gives us the length between current node and our parent
     return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
     
 };
