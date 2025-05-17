@@ -14,6 +14,10 @@
 
 function maxDepth(root: TreeNode | null): number {
 
+    /*
+    simply recursively call until we reach the end
+    */
+
     if (!root) return 0;
 
     return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
