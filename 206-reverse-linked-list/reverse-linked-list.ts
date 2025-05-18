@@ -14,7 +14,7 @@ function reverseList(head: ListNode | null): ListNode | null {
 
     let prev = null;
 
-    while(head) {
+    while (head) {
         let nextNode = head.next;
         head.next = prev;
         prev = head;
@@ -23,5 +23,5 @@ function reverseList(head: ListNode | null): ListNode | null {
     }
 
     return prev;
-
-}
+    
+};
