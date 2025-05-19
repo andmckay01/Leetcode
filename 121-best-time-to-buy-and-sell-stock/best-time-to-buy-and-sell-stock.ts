@@ -7,7 +7,6 @@ function maxProfit(prices: number[]): number {
         let profit = p - minPrice;
         minPrice = Math.min(minPrice, p);
         maxProfit = Math.max(maxProfit, profit);
-
         
     }
 
