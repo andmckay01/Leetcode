@@ -14,18 +14,16 @@
 
 function invertTree(root: TreeNode | null): TreeNode | null {
 
-    //base case
     if (!root) return null;
 
-    //invert logic
-    let tempLeft = root.left;
-    root.left = root.right;
-    root.right = tempLeft;
+    let tmpRight = root.right;
+    root.right = root.left;
+    root.left = tmpRight;
 
-    //recurse to invert all children
+    //recursive call
     invertTree(root.left);
     invertTree(root.right);
 
     return root;
-    
+
 };
