@@ -1,18 +1,22 @@
 function subsets(nums: number[]): number[][] {
 
-    /*
-    recursively call dfs, add subset we build to res if we're at the end of the depth
-    */
-
     let res = [];
     let subset = [];
 
+    /*
+    add to subset as we recursively call dfs
+    add to res if we are at the end
+    */
+
     function dfs(i = 0) {
+
+        //if we are at the final number we add subset to res
         if (i >= nums.length) {
-            res.push([...subset]) //spread
+            res.push([...subset])
             return
         }
 
+        //otherwise, we call with current num added and without current num added
         subset.push(nums[i]);
         dfs(i + 1);
 
@@ -21,7 +25,7 @@ function subsets(nums: number[]): number[][] {
 
     }
 
-    //call and return
+    //call dfs and return res
     dfs();
     return res;
     
