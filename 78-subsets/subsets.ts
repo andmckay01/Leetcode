@@ -4,10 +4,9 @@ function subsets(nums: number[]): number[][] {
     let subset = [];
 
     function dfs(i = 0) {
-
         if (i >= nums.length) {
             res.push([...subset]);
-            return
+            return;
         }
 
         subset.push(nums[i]);
