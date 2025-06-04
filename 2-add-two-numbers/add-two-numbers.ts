@@ -13,36 +13,33 @@
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
 
     /*
-    add numbers
-    calculate carry
-    use a dummy node
-    increment
-    while loop break
+    need to add to the new one
     */
 
     let carry = 0;
     let dummy = new ListNode(0);
-    let node = dummy;
+    let head = dummy; //this is what we will return (with next)
 
-    while (l1 || l2 || carry > 0) {
-
+    while(carry > 0 || l1 || l2) {
         let l1Value = l1 ? l1.val : 0;
         let l2Value = l2 ? l2.val : 0;
-        let newValue = l1Value + l2Value + carry;
-        carry = 0;
+
+        let newValue = carry + l1Value + l2Value;
+        carry = 0; //reset carry after using it
 
         if (newValue > 9) {
             newValue = newValue % 10;
             carry = 1;
         }
 
-        node.next = new ListNode(newValue);
-        node = node.next;
+        //set new value to our dummy and move to that pointer
+        head.next = new ListNode(newValue);
+        head = head.next;
 
-        //increment
+        //increment pointers
         if (l1) {
             l1 = l1.next;
-        }
+        };
 
         if (l2) {
             l2 = l2.next;
