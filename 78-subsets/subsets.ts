@@ -1,24 +1,22 @@
 function subsets(nums: number[]): number[][] {
 
     let res = [];
-    let subset = [];
+    let subsets = [];
 
-    function dfs( i = 0 ) {
+    function dfs(i = 0) {
         if (i >= nums.length) {
-            res.push([...subset]);
+            res.push([...subsets]);
             return;
         }
 
-        subset.push(nums[i]);
+        subsets.push(nums[i])
         dfs(i + 1);
 
-        subset.pop();
+        subsets.pop();
         dfs(i + 1);
-
     }
 
     dfs();
     return res;
-
     
 };
