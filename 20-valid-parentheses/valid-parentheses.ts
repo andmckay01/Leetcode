@@ -1,38 +1,38 @@
 function isValid(s: string): boolean {
 
     /*
-    we need to use a stack to make sure parenthesis are in the right order
-    We also need a mapping object to map close to open
-    at the end, check if the array is empty
-    stack is LIFO
+    need to use a queue
+    need a mapping object openToClose that we use if it is true
     */
 
-    let closeToOpen = {"}":"{", "]":"[", ")":"("};
+    //if closing we check the stack for an open in the correct position
+    let closeToOpen = {")":"(", "}":"{", "]":"["};
     let stack = [];
 
+    for(const c of s) {
 
-    //for every character
-    for (const p of s) {
+        //if it's a close then we check the stack for the corresponding open
+        if(closeToOpen[c]) {
 
-        //if closing
-        if ( closeToOpen[p] ) {
-
-            //if expected parenthesis is at the top of our stack
-            if ( closeToOpen[p] == stack[stack.length - 1] ) {
+            //remove from stack if it's there else we return false
+            if (stack[stack.length - 1] == closeToOpen[c]) {
                 stack.pop()
             } else {
                 return false
             }
+        
+        //else we add to the stack
         } else {
-            stack.push(p); //if opening, simply add to stack
-
+            stack.push(c)
         }
+
     }
 
-    if ( stack.length == 0 ) {
-        return true
+    //return true if stack is of length 0
+    if (stack.length == 0) {
+        return true;
     } else {
-        return false
+        return false;
     }
 
 };
