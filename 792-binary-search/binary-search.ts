@@ -1,25 +1,29 @@
 function search(nums: number[], target: number): number {
 
-    /*
-    ascending order tells us we can use binary search
-    O(log n) is also binary search time complexity
-    */
-
     let l = 0;
     let r = nums.length - 1;
 
-    while (l <= r) {
-        let m = l + Math.floor((r - l) / 2);
+    //once they equal, we should have the number we're searching for
+    while(l <= r) {
+        let m = Math.floor(l + (r - l)/2); //left bound
 
-        if (target < nums[m]) {
-            r = m - 1;
-        } else if (target > nums[m]) {
-            l = m + 1;
+        console.log('r: ', r);
+        console.log('l: ', l);
+        console.log('m: ', m);
+
+        //if midpoint is greater than target
+        if (nums[m] == target) {
+            return m;
+        //if midpoint is greater than target we shift r down to midpoint
+        } else if (nums[m] > target) {
+            r = m - 1; //left bound
+        //else we shift l up to midpoint + 1
         } else {
-            return m
+            l = m + 1;
         }
+
     }
 
-    return -1
+    return -1;
     
 };
