@@ -26,7 +26,7 @@ function lastStoneWeight(stones: number[]): number {
     if (maxHeap.isEmpty()) {
         return 0;
     } else {
-        return maxHeap.dequeue();
+        return maxHeap.front();
     }
     
 };
