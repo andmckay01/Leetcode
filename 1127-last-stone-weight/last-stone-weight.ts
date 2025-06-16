@@ -1,36 +1,37 @@
 function lastStoneWeight(stones: number[]): number {
 
     /*
-    enqueue
-    dequeue
-    size
-    front
+    we need to add everything to a maxHeap
     */
 
-    let maxHeap: MaxPriorityQueue<number> = new MaxPriorityQueue();
+    let maxHeap: MaxPriorityQueue<number> = new MaxPriorityQueue()
 
-    //add stones to max heap
+    //add all stones to the heap
     for (const s of stones) {
         maxHeap.enqueue(s);
     }
 
-    while (maxHeap.size() > 1) {
+    //run the simulation
+    while(maxHeap.size() > 1) {
+        let stone1 = maxHeap.dequeue();
+        let stone2 = maxHeap.dequeue();
 
-        let stone1 = maxHeap.dequeue(); //largest
-        let stone2 = maxHeap.dequeue(); //second largest
+        console.log(stone1);
+        console.log(stone2);
 
-        let newStone = stone1 - stone2;
-
-        if (newStone > 0) {
+        if (stone1 > stone2) {
+            let newStone = stone1 - stone2;
             maxHeap.enqueue(newStone);
-        }
+        } else if (stone1 < stone2) {
+            let newStone = stone2 - stone1;
+            maxHeap.enqueue(newStone);
+        } //else both are destroyed, so they are not added back to the heap
     }
 
-    if (maxHeap.size() == 1) {
-        return maxHeap.front()
+    if (maxHeap.isEmpty()) {
+        return 0;
     } else {
-        return 0
+        return maxHeap.dequeue();
     }
-        
     
 };
