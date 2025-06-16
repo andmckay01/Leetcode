@@ -16,9 +16,6 @@ function lastStoneWeight(stones: number[]): number {
         let stone1 = maxHeap.dequeue();
         let stone2 = maxHeap.dequeue();
 
-        console.log(stone1);
-        console.log(stone2);
-
         if (stone1 > stone2) {
             let newStone = stone1 - stone2;
             maxHeap.enqueue(newStone);
