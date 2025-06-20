@@ -12,33 +12,29 @@
 
 function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
 
-    /*
-    one-pass is a two-pointer solution where we initially shift our right pointer by n
-    then when there is no node.next for the right pointer, our left pointer is what we need
-    but we need to save the previous pointer so that we can point that to our l+1
+    //2 pointer solution where we increment both l and r
 
-    */
+    let dummy = new ListNode(0, head); //adding 0 to the beginning of the list
+    let left = dummy; //start at 0
+    let right = head; //start at 1
 
-    let dummy = new ListNode(0, head); //must start 1 to the left so that our L is in the correct place
-    let left = dummy; //starts at dummy (1 to the left)
-    let right = head; //starts at head
-
-    //increment our right to the starting point
+    //increment right by n
     while(n > 0) {
-        right = right.next; //increment
-        n--; //decrement n
-    }
-
-    //shift left and right until right doesn't exist
-    while(right) {
-        left = left.next;
         right = right.next;
-
+        n--;
     }
 
-    //left is in the correct position
-    left.next = left.next.next; //skip over
+    //shift until right now longer exists
+    //this is like doing the inverse. Front of list - n = End of list
+    //shift both, will stop when we are good
+    while(right) {
+        right = right.next;
+        left = left.next;
+    }
+
+    //after this, left will be at the node before the one we want to remove
+    left.next = left.next.next;
 
     return dummy.next;
-    
-};
+
+}
