@@ -8,8 +8,9 @@ function maxProfit(prices: number[]): number {
 
     for (const p of prices) {
 
+        let profit = p - minPrice;
         minPrice = Math.min(minPrice, p);
-        maxProfit = Math.max(maxProfit, p - minPrice);
+        maxProfit = Math.max(maxProfit, profit);
 
     }
 
