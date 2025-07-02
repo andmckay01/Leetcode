@@ -6,7 +6,7 @@ function maxProfit(prices: number[]): number {
     //find min price and max price and then calculate at the end and return
     //if not profit, return 0
 
-    for (let p of prices) {
+    for (const p of prices) {
 
         let profit = p - minPrice;
         minPrice = Math.min(minPrice, p);
