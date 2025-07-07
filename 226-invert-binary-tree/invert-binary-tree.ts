@@ -16,10 +16,11 @@ function invertTree(root: TreeNode | null): TreeNode | null {
 
     if (!root) return root;
 
-    let rightTemp = root.right;
+    let tempRight = root.right;
     root.right = root.left;
-    root.left = rightTemp;
+    root.left = tempRight;
 
+    //resurse
     invertTree(root.left);
     invertTree(root.right);
 
