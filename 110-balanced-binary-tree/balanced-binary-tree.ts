@@ -15,33 +15,34 @@
 function isBalanced(root: TreeNode | null): boolean {
 
     /*
-    balanced binary tree is one where every node's children differ in height by no more than 1
-    so we can use a recursive dfs to find the heights
-    compare those heights
-    if at any point they are not balanced, we will return false
+    use a recursive depth first search
+    we check if we are balanced at every level and count the depth at every level and retun in an array
+    if at any point we are unbalanced, return false
+    at the very end, we call the dfs and return the true/false flag which will be our top level balance
     */
 
-    function dfs(node) {
+    function dfs(root) {
 
-        if(!node) return [true, 0]
+        if (!root) return [true, 0];
 
-        //recursive call
-        const left = dfs(node.left);
-        const right = dfs(node.right);
+        //recursive calls and define variables
+        const left = dfs(root.left);
+        const right = dfs(root.right);
 
-        //find height and return
-        const height =  1 + Math.max(left[1], right[1]);
+        //calculate the current height
+        const height = 1 + Math.max(left[1], right[1]);
 
-        //true or false for balanced?
-        const balanced = (left[0] && right[0] && 
-        Math.abs(right[1] - left[1]) <= 1);
+        //determine if it is balanced
+        const balanced = (Math.abs(left[1] - right[1]) <= 1 && //height is within 1
+        left[0] && right[0]); //both sides are true
 
-        if(balanced) {
+        //use balanced to determine what to return
+        if (balanced) {
             return [true, height]
         } else {
             return [false, height]
         }
-
+    
     }
 
     let result = dfs(root);
