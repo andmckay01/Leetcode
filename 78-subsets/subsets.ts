@@ -1,5 +1,5 @@
 function subsets(nums: number[]): number[][] {
-    
+
     let res = [];
     let subset = [];
 
@@ -18,4 +18,5 @@ function subsets(nums: number[]): number[][] {
 
     dfs();
     return res;
+    
 };
