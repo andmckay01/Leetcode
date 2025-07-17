@@ -1,12 +1,5 @@
 function lengthOfLongestSubstring(s: string): number {
 
-    /*
-    main string
-    use a sliding window, move left of window if we find a duplicate
-    use a set to find duplicates (sets can only have one of each character)
-    variable with the longest length
-    */
-
     let charSet = new Set();
     let l = 0;
     let maxLength = 0;
@@ -28,3 +21,4 @@ function lengthOfLongestSubstring(s: string): number {
     return maxLength
     
 };
+
