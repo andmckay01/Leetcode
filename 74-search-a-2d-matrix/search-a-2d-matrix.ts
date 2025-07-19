@@ -1,8 +1,7 @@
 function searchMatrix(matrix: number[][], target: number): boolean {
 
     /*
-    The previous time i solved this problem it required that we found the proper row and col separately
-    But because this is in order, we can simply treat it as one long list
+    treat as one long list since it's in order to simplifiy the problem
     use binary search where we compare target to the value
     */
 
@@ -23,7 +22,7 @@ function searchMatrix(matrix: number[][], target: number): boolean {
             l = m + 1;
         } else if (target < matrix[row][col]) {
             r = m - 1;
-        } else { //if ==
+        } else {
             return true
         }
         
