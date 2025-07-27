@@ -13,7 +13,6 @@ function maxArea(height: number[]): number {
         } else {
             r--;
         }
-
     }
 
     return maxVolume;
