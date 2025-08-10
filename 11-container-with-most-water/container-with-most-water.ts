@@ -5,17 +5,18 @@ function maxArea(height: number[]): number {
     let maxVolume = -Infinity;
 
     while(l < r) {
-        let newVolume = (r - l) * Math.min(height[r], height[l]);
-        maxVolume = Math.max(maxVolume, newVolume);
 
-        //move shorter one
-        if (height[l] < height[r]) {
-            l++
+        const currentVolume = (r - l) * Math.min(height[l], height[r]);
+        maxVolume = Math.max(currentVolume, maxVolume);
+
+        if (height[r] > height[l]) {
+            l++;
         } else {
             r--;
         }
+        
     }
 
-    return maxVolume;
-    
-};
+    return maxVolume
+
+}
