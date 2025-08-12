@@ -1,23 +1,21 @@
 function isValid(s: string): boolean {
 
     /*
-    need to build a mapping object
-    a stack implemented with an array
-    if closing parenthesis, we check the top of the stock to close it
-    if at the end the length of the stack is 0 then the parenthesis are valid
+    Implement a stack
+    Add to the stack if open, check if the correct one exists in the stack when closing
+    Check for emptiness at the end
     */
 
-    const closeToOpen = {")":"(", "}":"{", "]":"["};
     let stack = [];
+    let closeToOpen = {"}": "{", "]": "[", ")": "("};
 
-    for (let p of s) {
-        if (closeToOpen[p]) {
-            let open = stack.pop();
-            if (closeToOpen[p] !== open) {
+    for (const c of s) {
+        if (closeToOpen[c]) {
+            if (closeToOpen[c] != stack.pop()) {
                 return false;
             }
-        } else { //if open parenthesis
-            stack.push(p);
+        } else {
+            stack.push(c);
         }
     }
 
@@ -27,6 +25,5 @@ function isValid(s: string): boolean {
         return false;
     }
 
-    
     
 };
