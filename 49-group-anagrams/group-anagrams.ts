@@ -1,8 +1,9 @@
 function groupAnagrams(strs: string[]): string[][] {
 
     /*
-    create a map
-    loop through each letter and add to an array, convert to a string, use this as the key in the map
+    loop over every character in the string and convert to character code
+    use this character code as the key in a map
+    spread over the map and return in an array
     */
 
     let group = new Map();
