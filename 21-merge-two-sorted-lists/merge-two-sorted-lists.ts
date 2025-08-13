@@ -12,34 +12,27 @@
 
 function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
 
-    /*
-    create a new list, iterate through both and add whichever is lesser to the new list
-    */
+    //sorted so we can simply do one check and add whichever one is lesser
 
-    let dummy = new ListNode(0);
-    let head = dummy;
+    let head = new ListNode(0);
+    let dummy = head;
 
     while(list1 || list2) {
 
-        //these may not be needed but will for now ensure this code runs
-        let l1Val = list1 ? list1.val : Infinity;
-        let l2Val = list2 ? list2.val : Infinity;
+        let list1Val = list1 ? list1.val : Infinity;
+        let list2Val = list2 ? list2.val : Infinity;
 
-        //add to new list
-        if (l1Val <= l2Val) {
-            head.next = new ListNode(l1Val);
-            list1 = list1.next;
+        if (list1Val >= list2Val) {
+            dummy.next = new ListNode(list2Val);
+            list2 = list2.next; //increment
         } else {
-            head.next = new ListNode(l2Val);
-            list2 = list2.next;
+            dummy.next = new ListNode(list1Val);
+            list1 = list1.next; //increment
         }
 
-        //increment main list
-        head = head.next
-
+        dummy = dummy.next; //increment
     }
 
-    //once done, return dummy
-    return dummy.next;
+    return head.next;
     
 };
