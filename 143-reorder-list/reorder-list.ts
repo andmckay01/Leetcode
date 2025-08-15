@@ -15,18 +15,10 @@
  */
 function reorderList(head: ListNode | null): void {
 
-    /*
-    need to find our midpoint
-    split the list into 2
-    reverse the 2nd list
-    then splice the lists together into a new list that we return
-    */
-
-    //find our midpoint by using toirtise and hare
+    //find midpoint
     let slow = head;
     let fast = head.next;
 
-    //this will exist once we cannot move fast anymore
     while(fast && fast.next) {
         slow = slow.next;
         fast = fast.next.next;
@@ -47,17 +39,11 @@ function reorderList(head: ListNode | null): void {
     }
     second = prev;
 
-    //once reversed, splice together
     while(second) {
 
-        //temp variables
         let temp1 = first.next;
         let temp2 = second.next;
-
-        //add second to first
         first.next = second;
-
-        //re-link
         second.next = temp1;
 
         //increment
