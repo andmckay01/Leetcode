@@ -17,7 +17,6 @@ function subsets(nums: number[]): number[][] {
     }
 
     dfs();
-
     return res;
     
 };
