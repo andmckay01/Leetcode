@@ -9,7 +9,7 @@ function twoSum(nums: number[], target: number): number[] {
             return [hashmap.get(numberNeeded), i]
         }
 
-        hashmap.set(nums[i], i);
+        hashmap.set(nums[i], i)
     }
     
 };
