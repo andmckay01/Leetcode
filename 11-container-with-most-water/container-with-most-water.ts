@@ -8,7 +8,8 @@ function maxArea(height: number[]): number {
         let newVolume = (r - l) * Math.min(height[r], height[l]);
         maxVolume = Math.max(maxVolume, newVolume);
 
-        if (height[l] >= height[r]) {
+        //increment whichever is smaller
+        if (height[l] > height[r]) {
             r--;
         } else {
             l++;
