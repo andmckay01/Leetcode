@@ -1,19 +1,10 @@
 function isPalindrome(s: string): boolean {
 
-    /*
-    use left and right pointers
-    use while loops to iterate if it's not an alphanumeric character
-    main while loop 
-    break at any point
-    return true at bottom
-    */
-
     let l = 0;
     let r = s.length - 1;
 
-    while(l <= r) { //equal to?
+    while(l <= r) {
 
-        //increment until we are at alphaNum
         while(l < r && !isAlphaNum(s[l])) {
             l++;
         }
